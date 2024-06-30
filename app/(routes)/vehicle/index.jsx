@@ -37,7 +37,16 @@ const index = () => {
     <SafeAreaView
       style={{ padding: 20, backgroundColor: "white", minHeight: "100%" }}
     >
-      <Text style={{ fontSize: 20, padding: 20 }}>Vehicle Details</Text>
+      <Text
+        style={{
+          fontSize: 25,
+          fontWeight: "bold",
+          marginTop: 10,
+          marginBottom: 30,
+        }}
+      >
+        Vehicle Details
+      </Text>
       <View style={styles.container}>
         <Text style={styles.label}>Manufacture Year</Text>
         <TextInput
@@ -164,7 +173,7 @@ const index = () => {
               flex: 1,
             }}
             onPress={() => {
-                router.replace("owner");
+              router.replace("owner");
             }}
           >
             <Text
@@ -188,7 +197,7 @@ export default index;
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    padding: 20,
+    // padding: 20,
     justifyContent: "center",
   },
   label: {

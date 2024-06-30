@@ -115,7 +115,16 @@ const App = () => {
     <SafeAreaView
       style={{ padding: 20, backgroundColor: "white", minHeight: "100%" }}
     >
-      <Text style={{ fontSize: 20, padding: 20, marginTop:30 }}>Add Address Details</Text>
+      <Text
+        style={{
+          fontSize: 25,
+          fontWeight: "bold",
+          marginTop: 10,
+          marginBottom: 30,
+        }}
+      >
+        Add Address Details
+      </Text>
       <View style={styles.container}>
         <Text style={styles.label}>Country</Text>
         <Dropdown
@@ -239,16 +248,13 @@ const App = () => {
               //   marginTop: 20,
               flex: 1,
             }}
-            onPress={() =>{
-
+            onPress={() => {
               console.log(
                 `You have selected\nCountry: ${countryName}\nState: ${stateName}\nCity: ${cityName}`
-              )
+              );
 
-              router.replace("(tabs)/home")
-            }
-
-            }
+              router.replace("(tabs)/home");
+            }}
           >
             <Text
               style={{
@@ -272,8 +278,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    padding: 16,
-    // justifyContent: "center",
     alignContent: "center",
   },
   dropdown: {

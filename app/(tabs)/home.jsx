@@ -8,31 +8,106 @@ import {
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link, Navigator } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+import {
+  FontAwesome5,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 
 const index = () => {
   return (
-    <ScrollView contentContainerStyle={styles.view22}>
-      {/* <View style={styles.view22}> */}
-      {/* <View style={styles.view_home}> */}
-      <Link
-        href={"add"}
-        //  style={{backgroundColor:"blue", height:"100%", display:"flex"}}
-        style={styles.view_home}
+    <ScrollView contentContainerStyle={styles.cnt}>
+      <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={["#c1dfc4", "#deecdd"]}
+        style={styles.lg}
       >
-        <Text style={{ textAlign: "center" }}>Vivke</Text>
-      </Link>
-      {/* </View> */}
+        <Link href={"add"}>
+          <View style={styles.lg_l_v}>
+            <MaterialIcons
+              name="add-to-queue"
+              size={26}
+              style={{ color: "#353635" }}
+            />
+            <Text style={styles.lg_l_v_text}>Add New Vehicle</Text>
+            <View style={{ display: "flex", flexDirection: "row" }}>
+              <MaterialCommunityIcons
+                name="minus"
+                size={30}
+                style={{ color: "#353635" }}
+              />
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={30}
+                style={{ marginLeft: -14, color: "#353635" }}
+              />
+            </View>
+          </View>
+        </Link>
+      </LinearGradient>
 
-      <TouchableOpacity>
-        <View style={styles.view_home}>
-          <Text style={{ textAlign: "center" }}>Vivke</Text>
-        </View>
-      </TouchableOpacity>
+      {/* background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); */}
+      <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={["#cfd9df", "#e2ebf0"]}
+        style={styles.lg}
+      >
+        <Link href={"add"}>
+          <View style={styles.lg_l_v}>
+            <MaterialIcons
+              name="search"
+              size={26}
+              style={{ color: "#353635" }}
+            />
+            <Text style={styles.lg_l_v_text}>Search a vechile</Text>
+            <View style={{ display: "flex", flexDirection: "row" }}>
+              <MaterialCommunityIcons
+                name="minus"
+                size={30}
+                style={{ color: "#353635" }}
+              />
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={30}
+                style={{ marginLeft: -14, color: "#353635" }}
+              />
+            </View>
+          </View>
+        </Link>
+      </LinearGradient>
 
-      <View style={styles.view_home}>
-        <Text style={{ textAlign: "center" }}>Vivke</Text>
-      </View>
-      {/* </View> */}
+      <LinearGradient
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={["#cfd9df", "#e2ebf0"]}
+        style={styles.lg}
+      >
+        <Link href={"add"}>
+          <View style={styles.lg_l_v}>
+            <MaterialIcons
+              name="update"
+              size={26}
+              style={{ color: "#353635" }}
+            />
+            <Text style={styles.lg_l_v_text}>Update Service Date</Text>
+            <View style={{ display: "flex", flexDirection: "row" }}>
+              <MaterialCommunityIcons
+                name="minus"
+                size={30}
+                style={{ color: "#353635" }}
+              />
+              <MaterialCommunityIcons
+                name="arrow-right"
+                size={30}
+                style={{ marginLeft: -14, color: "#353635" }}
+              />
+            </View>
+          </View>
+        </Link>
+      </LinearGradient>
     </ScrollView>
   );
 };
@@ -40,33 +115,26 @@ const index = () => {
 export default index;
 
 const styles = StyleSheet.create({
-  view22: {
-    backgroundColor: "white",
-    width: "100%",
+  cnt: {
+    display: "flex",
+    padding: 20,
     gap: 20,
-    // backgroundColor: "blue",
+    backgroundColor: "white",
     minHeight: "100%",
-    // height: "100%",
-    // flex:1,
+  },
+  lg: { borderRadius: 15 },
+
+  lg_l_v: {
+    height: 150,
+    width: "100%",
     display: "flex",
-    flexDirection: "column",
-    alignContent: "center",
+    flexDirection: "row",
+    gap: 15,
+    paddingLeft: 30,
     alignItems: "center",
-    justifyContent: "center",
   },
-  view_home: {
-    // flex: 1,
-    width: 200,
-    height: 200,
-    backgroundColor: "red",
-    // margin: "auto",
-    // marginTop: 100,
-    display: "flex",
-    justifyContent: "center",
-    alignContent: "center",
-    textAlign: "center",
-    borderRadius: 10,
-    borderColor: "black",
-    borderWidth: 1,
-  },
+
+  lg_l_v_text: { fontSize: 22, color: "#353635" },
 });
+
+// background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);

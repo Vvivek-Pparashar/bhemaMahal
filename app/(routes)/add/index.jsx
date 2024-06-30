@@ -5,20 +5,12 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  SafeAreaView,
 } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+// import {  } from "react-native-safe-area-context";
 import RNPickerSelect from "react-native-picker-select";
 import { router } from "expo-router";
-
-////////////////////////////
-// import {
-//   CitySelect,
-//   CountrySelect,
-//   StateSelect,
-//   LanguageSelect,
-// } from "react-country-state-city";
-// import "react-country-state-city/dist/react-country-state-city.css";
 
 const index = () => {
   const [selectedValue, setSelectedValue] = useState("");
@@ -27,14 +19,21 @@ const index = () => {
     <SafeAreaView
       style={{ padding: 20, backgroundColor: "white", minHeight: "100%" }}
     >
-      <Text style={{ fontSize: 20, padding: 20 }}>ADD Vechile here</Text>
+      <Text
+        style={{
+          fontSize: 25,
+          fontWeight: "bold",
+          marginTop: 10,
+          marginBottom: 30,
+        }}
+      >
+        ADD Vehicle Type
+      </Text>
       <View style={styles.container}>
-        {/* ///////////////////////////////////// */}
         <Text style={styles.label}>Vehicle Type</Text>
         <View
           style={{
             borderWidth: 1,
-            // borderWidth: 1,
             borderColor: "#ccc",
             borderRadius: 5,
             marginBottom: 20,
@@ -130,7 +129,7 @@ export default index;
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    padding: 20,
+    // padding: 20,
     justifyContent: "center",
   },
   label: {
@@ -146,27 +145,17 @@ const styles = StyleSheet.create({
   },
 });
 
-// const pickerSelectStyles = StyleSheet.create({
-//   inputIOS: {
-//     fontSize: 16,
-//     paddingVertical: 12,
-//     paddingHorizontal: 10,
-//     borderWidth: 1,
-//     borderColor: "gray",
-//     borderRadius: 4,
-//     color: "black",
-//     paddingRight: 30,
-//     marginBottom: 20,
-//   },
-//   inputAndroid: {
-//     fontSize: 16,
-//     // paddingHorizontal: 5,
-//     // paddingVertical: 8,
-//     //   borderWidth: 1,
-//     //   borderColor: 'black',
-//     borderRadius: 8,
-//     color: "black",
-//     // paddingRight: 20,
-//     // marginBottom: 20,
-//   },
-// });
+// import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+// import React from 'react'
+
+// const index = () => {
+//   return (
+//     <SafeAreaView>
+//       <Text>Hlo</Text>
+//     </SafeAreaView>
+//   )
+// }
+
+// export default index
+
+// const styles = StyleSheet.create({})
