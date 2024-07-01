@@ -1,5 +1,12 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  PixelRatio,
+} from "react-native";
+import React, { useEffect } from "react";
 import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
@@ -8,7 +15,14 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+const dp = (size) => {
+  return size / PixelRatio.get();
+};
+
 const index = () => {
+  // useEffect(()=>{
+  //   console.log(PixelRatio.get());
+  // }, [])
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Pressable onPress={() => router.navigate("add")}>
@@ -97,7 +111,7 @@ export default index;
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    padding: wp("5%"),
+    padding: dp(50),
     gap: wp("5%"),
     backgroundColor: "white",
     minHeight: "100%",
@@ -118,7 +132,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  lg_v_text: { fontSize: wp("5.5%"), color: "#353635" },
+  lg_v_text: { fontSize: dp(50), color: "#353635" },
 
   lg_view_view: {
     flex: 1,
