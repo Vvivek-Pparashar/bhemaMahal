@@ -24,14 +24,14 @@ const index = () => {
         colors={["#c1dfc4", "#deecdd"]}
         style={styles.lg}
       >
-        <Link href={"add"}>
+        <Link href={"/(routes)/add"}>
           <View style={styles.lg_l_v}>
             <MaterialIcons
               name="add-to-queue"
               size={26}
               style={{ color: "#353635" }}
             />
-            <Text style={styles.lg_l_v_text}>Add New Vehicle</Text>
+            <Text style={styles.lg_l_v_text}>Add New Vehicleee</Text>
             <View style={{ display: "flex", flexDirection: "row" }}>
               <MaterialCommunityIcons
                 name="minus"
@@ -55,7 +55,7 @@ const index = () => {
         colors={["#cfd9df", "#e2ebf0"]}
         style={styles.lg}
       >
-        <Link href={"add"}>
+        <Link href={"/add"}>
           <View style={styles.lg_l_v}>
             <MaterialIcons
               name="search"
@@ -85,7 +85,7 @@ const index = () => {
         colors={["#cfd9df", "#e2ebf0"]}
         style={styles.lg}
       >
-        <Link href={"add"}>
+        <Link href={"/add"}>
           <View style={styles.lg_l_v}>
             <MaterialIcons
               name="update"

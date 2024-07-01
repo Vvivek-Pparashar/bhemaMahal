@@ -23,7 +23,7 @@ function LogoTitle() {
         // source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
       />
       <Text style={{ fontSize: 30, fontWeight: "bold", color: "#2375D0" }}>
-        S&V
+        BimaMahal
       </Text>
     </View>
   );

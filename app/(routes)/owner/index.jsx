@@ -44,7 +44,9 @@ const index = () => {
           marginTop: 10,
           marginBottom: 30,
         }}
-      >Owner Details</Text>
+      >
+        Owner Details
+      </Text>
       <View style={styles.container}>
         <Text style={styles.label}>Owner Name</Text>
         <TextInput style={styles.input} placeholder="Enter your name" />
@@ -70,6 +72,14 @@ const index = () => {
         {open && (
           <DateTimePicker value={date} onChange={onChange} mode="date" />
         )}
+
+        <Text style={styles.label}>Aadhar Card</Text>
+
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your Aadhar CARD"
+          secureTextEntry
+        />
 
         <View
           style={{
@@ -110,7 +120,7 @@ const index = () => {
         >
           <TouchableOpacity
             style={{
-              backgroundColor: "#0F3460",
+              backgroundColor: "#DFE0E2",
               padding: 20,
               borderRadius: 15,
               alignItems: "center",
@@ -122,18 +132,18 @@ const index = () => {
           >
             <Text
               style={{
-                color: "#fff",
+                color: "black",
                 textTransform: "uppercase",
                 fontWeight: "600",
               }}
             >
-              previous
+              back
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={{
-              backgroundColor: "#0F3460",
+              backgroundColor: "#2375D0",
               padding: 20,
               borderRadius: 15,
               alignItems: "center",
@@ -141,7 +151,7 @@ const index = () => {
               flex: 1,
             }}
             onPress={() => {
-                router.replace("country");
+              router.replace("country");
             }}
           >
             <Text

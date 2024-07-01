@@ -215,7 +215,7 @@ const App = () => {
         >
           <TouchableOpacity
             style={{
-              backgroundColor: "#0F3460",
+              backgroundColor: "#DFE0E2",
               padding: 20,
               borderRadius: 15,
               alignItems: "center",
@@ -230,18 +230,18 @@ const App = () => {
           >
             <Text
               style={{
-                color: "#fff",
+                color: "black",
                 textTransform: "uppercase",
                 fontWeight: "600",
               }}
             >
-              previous
+              Back
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={{
-              backgroundColor: "green",
+              backgroundColor: "#9acd32",
               padding: 20,
               borderRadius: 15,
               alignItems: "center",

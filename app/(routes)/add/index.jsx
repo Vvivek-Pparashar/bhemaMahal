@@ -76,7 +76,7 @@ const index = () => {
         >
           <TouchableOpacity
             style={{
-              backgroundColor: "red",
+              backgroundColor: "#f72828",
               padding: 20,
               borderRadius: 15,
               alignItems: "center",
@@ -93,12 +93,12 @@ const index = () => {
                 fontWeight: "600",
               }}
             >
-              Home
+              Cancel
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              backgroundColor: "#0F3460",
+              backgroundColor: "#2375D0",
               padding: 20,
               borderRadius: 15,
               alignItems: "center",

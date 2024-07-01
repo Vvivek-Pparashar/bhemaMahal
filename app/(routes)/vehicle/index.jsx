@@ -1,6 +1,7 @@
 import {
   Button,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -34,161 +35,187 @@ const index = () => {
   };
 
   return (
-    <SafeAreaView
-      style={{ padding: 20, backgroundColor: "white", minHeight: "100%" }}
-    >
-      <Text
-        style={{
-          fontSize: 25,
-          fontWeight: "bold",
-          marginTop: 10,
-          marginBottom: 30,
-        }}
+    <ScrollView>
+      <SafeAreaView
+        style={{ padding: 20, backgroundColor: "white", minHeight: "100%" }}
       >
-        Vehicle Details
-      </Text>
-      <View style={styles.container}>
-        <Text style={styles.label}>Manufacture Year</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Manufacture Year"
-          keyboardType="numeric"
-          maxLength={4}
-        />
-
-        <View
+        <Text
           style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: 20,
-            marginBottom: 20,
+            fontSize: 25,
+            fontWeight: "bold",
+            marginTop: 10,
+            marginBottom: 30,
           }}
         >
-          <Text style={styles.label}>Permanent Vehicle No?</Text>
-          <CheckBox
-            // style={{ flex: 1, padding: 10 }}
-            isChecked={isChecked}
-            onClick={() => {
-              setIsChecked(!isChecked);
-            }}
+          Vehicle Details
+        </Text>
+        <View style={styles.container}>
+          <Text style={styles.label}>Manufacture Year</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Manufacture Year"
+            keyboardType="numeric"
+            maxLength={4}
           />
-        </View>
 
-        {isChecked && (
-          <View>
-            {/* <Text style={styles.label}>Vehicle No.</Text> */}
-            <View style={{ display: "flex", flexDirection: "row", gap: 20 }}>
-              <TextInput
-                style={{ ...styles.input, flex: 2 }}
-                placeholder="HR"
-                maxLength={2}
-              />
-              <TextInput
-                style={{ ...styles.input, flex: 2 }}
-                placeholder="31"
-                maxLength={2}
-                keyboardType="numeric"
-              />
-              <TextInput
-                style={{ ...styles.input, flex: 1 }}
-                placeholder="H"
-                maxLength={1}
-              />
-              <TextInput
-                style={{ ...styles.input, flex: 4 }}
-                placeholder="9641"
-                maxLength={4}
-                keyboardType="numeric"
-              />
-            </View>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 20,
+              marginBottom: 20,
+            }}
+          >
+            <Text style={styles.label}>Permanent Vehicle No?</Text>
+            <CheckBox
+              // style={{ flex: 1, padding: 10 }}
+              isChecked={isChecked}
+              onClick={() => {
+                setIsChecked(!isChecked);
+              }}
+            />
           </View>
-        )}
 
-        <Text style={styles.label}>chassis number</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="chassis number"
-          //   keyboardType="numeric"
-          maxLength={17}
-        />
+          {isChecked && (
+            <View>
+              {/* <Text style={styles.label}>Vehicle No.</Text> */}
+              <View style={{ display: "flex", flexDirection: "row", gap: 20 }}>
+                <TextInput
+                  style={{ ...styles.input, flex: 2 }}
+                  placeholder="HR"
+                  maxLength={2}
+                />
+                <TextInput
+                  style={{ ...styles.input, flex: 2 }}
+                  placeholder="31"
+                  maxLength={2}
+                  keyboardType="numeric"
+                />
+                <TextInput
+                  style={{ ...styles.input, flex: 1 }}
+                  placeholder="H"
+                  maxLength={1}
+                />
+                <TextInput
+                  style={{ ...styles.input, flex: 4 }}
+                  placeholder="9641"
+                  maxLength={4}
+                  keyboardType="numeric"
+                />
+              </View>
+            </View>
+          )}
 
-        <Text style={styles.label}>Service Date</Text>
-        <TextInput
-          style={styles.input}
-          placeholder={"DD-MM-YYYY"}
-          onFocus={() => setOpen(true)}
-          value={dateData}
-        />
+          <Text style={styles.label}>Engine number</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Engine number"
+            //   keyboardType="numeric"
+            maxLength={17}
+          />
 
-        {open && (
-          <DateTimePicker value={date} onChange={onChange} mode="date" />
-        )}
+          <Text style={styles.label}>chassis number</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="chassis number"
+            //   keyboardType="numeric"
+            maxLength={17}
+          />
 
-        <Text style={styles.label}>kilometer Driven</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="kilometer Driven"
-          keyboardType="numeric"
-          maxLength={9}
-        />
+          <Text style={styles.label}>Insurance Company</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Insurance Company"
+            //   keyboardType="numeric"
+            maxLength={17}
+          />
 
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: 20,
-            marginTop: 20,
-          }}
-        >
-          <TouchableOpacity
+          <Text style={styles.label}>Insurance Expiry Date</Text>
+          <TextInput
+            style={styles.input}
+            placeholder={"DD-MM-YYYY"}
+            onFocus={() => setOpen(true)}
+            value={dateData}
+          />
+
+          <Text style={styles.label}>Service Date</Text>
+          <TextInput
+            style={styles.input}
+            placeholder={"DD-MM-YYYY"}
+            onFocus={() => setOpen(true)}
+            value={dateData}
+          />
+
+          {open && (
+            <DateTimePicker value={date} onChange={onChange} mode="date" />
+          )}
+
+          <Text style={styles.label}>kilometer Driven</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="kilometer Driven"
+            keyboardType="numeric"
+            maxLength={9}
+          />
+
+          <View
             style={{
-              backgroundColor: "#0F3460",
-              padding: 20,
-              borderRadius: 15,
-              alignItems: "center",
-              flex: 1,
-            }}
-            onPress={() => {
-              router.replace("add");
+              display: "flex",
+              flexDirection: "row",
+              gap: 20,
+              marginTop: 20,
             }}
           >
-            <Text
+            <TouchableOpacity
               style={{
-                color: "#fff",
-                textTransform: "uppercase",
-                fontWeight: "600",
+                backgroundColor: "#DFE0E2",
+                padding: 20,
+                borderRadius: 15,
+                alignItems: "center",
+                flex: 1,
+              }}
+              onPress={() => {
+                router.replace("add");
               }}
             >
-              previous
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  color: "black",
+                  textTransform: "uppercase",
+                  fontWeight: "600",
+                }}
+              >
+                back
+              </Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#0F3460",
-              padding: 20,
-              borderRadius: 15,
-              alignItems: "center",
-              //   marginTop: 20,
-              flex: 1,
-            }}
-            onPress={() => {
-              router.replace("owner");
-            }}
-          >
-            <Text
+            <TouchableOpacity
               style={{
-                color: "#fff",
-                textTransform: "uppercase",
-                fontWeight: "600",
+                backgroundColor: "#2375D0",
+                padding: 20,
+                borderRadius: 15,
+                alignItems: "center",
+                //   marginTop: 20,
+                flex: 1,
+              }}
+              onPress={() => {
+                router.replace("owner");
               }}
             >
-              Next
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  color: "#fff",
+                  textTransform: "uppercase",
+                  fontWeight: "600",
+                }}
+              >
+                Next
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
