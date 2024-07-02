@@ -15,10 +15,13 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { VehicleDataContext } from "../../../context/newVehicle";
 
 const index = () => {
-  const [isChecked, setIsChecked] = useState(false);
-  const [date, setDate] = useState(new Date());
-  const [dateData, setDateData] = useState("");
-  const [open, setOpen] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
+  const [dateED, setDateED] = useState(new Date());
+  const [openED, setOpenED] = useState(false);
+
+  // for service
+  const [dateSD, setDateSD] = useState(new Date());
+  const [openSD, setOpenSD] = useState(false);
 
   const {
     vehicleData,
@@ -36,7 +39,7 @@ const index = () => {
     changekmDriven,
   } = useContext(VehicleDataContext);
 
-  const onChange = (event, selectedDate) => {
+  const onChangeED = (event, selectedDate) => {
     const currentDate = selectedDate;
 
     const year = selectedDate.getFullYear();
@@ -46,9 +49,24 @@ const index = () => {
     const dateString = `${day}-${month}-${year}`;
 
     console.log(dateString);
-    setOpen(false);
-    setDate(currentDate);
-    setDateData(dateString);
+
+    setOpenED(false);
+    setDateED(currentDate);
+    changeied(dateString);
+  };
+
+  const onChangeSD = (event, selectedDate) => {
+    const currentDate = selectedDate;
+
+    const year = selectedDate.getFullYear();
+    const month = selectedDate.getMonth() + 1;
+    const day = selectedDate.getDate();
+
+    const dateString = `${day}-${month}-${year}`;
+
+    setOpenSD(false);
+    setDateSD(currentDate);
+    changeserviceData(dateString);
   };
 
   return (
@@ -164,20 +182,25 @@ const index = () => {
           <TextInput
             style={styles.input}
             placeholder={"DD-MM-YYYY"}
-            onFocus={() => setOpen(true)}
-            value={dateData}
+            onFocus={() => setOpenED(true)}
+            value={vehicleData.ied}
+
           />
+
+          {openED && (
+            <DateTimePicker value={dateED} onChange={onChangeED} mode="date" />
+          )}
 
           <Text style={styles.label}>Service Date</Text>
           <TextInput
             style={styles.input}
             placeholder={"DD-MM-YYYY"}
-            onFocus={() => setOpen(true)}
-            value={dateData}
+            onFocus={() => setOpenSD(true)}
+            value={vehicleData.serviceData}
           />
 
-          {open && (
-            <DateTimePicker value={date} onChange={onChange} mode="date" />
+          {openSD && (
+            <DateTimePicker value={dateSD} onChange={onChangeSD} mode="date" />
           )}
 
           <Text style={styles.label}>kilometer Driven</Text>
