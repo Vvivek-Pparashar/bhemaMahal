@@ -6,7 +6,7 @@ import { CounterProvider } from "../context/newVehicle";
 const index = () => {
   return (
     <View>
-      <Redirect href={"vehicle"} />
+      <Redirect href={"owner"} />
     </View>
   );
 };

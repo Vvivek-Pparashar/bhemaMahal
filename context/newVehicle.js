@@ -129,6 +129,12 @@ export const VehicleDataProvider = ({ children }) => {
         changeied,
         changeserviceData,
         changekmDriven,
+        changeownerName,
+        changemobileNo,
+        changeDOB,
+        changeaadharNo,
+        changehasPAN,
+        changePAN
       }}
     >
       {children}

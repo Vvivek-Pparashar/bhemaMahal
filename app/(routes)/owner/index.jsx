@@ -7,15 +7,24 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { router } from "expo-router";
 import CheckBox from "react-native-check-box";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { VehicleDataContext } from "../../../context/newVehicle";
 
 const index = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const {
+    vehicleData,
+    changeownerName,
+    changemobileNo,
+    changeDOB,
+    changeaadharNo,
+    changehasPAN,
+    changePAN,
+  } = useContext(VehicleDataContext);
+
   const [date, setDate] = useState(new Date());
-  const [dateData, setDateData] = useState("");
   const [open, setOpen] = useState(false);
 
   const onChange = (event, selectedDate) => {
@@ -27,10 +36,9 @@ const index = () => {
 
     const dateString = `${day}-${month}-${year}`;
 
-    console.log(dateString);
     setOpen(false);
     setDate(currentDate);
-    setDateData(dateString);
+    changeDOB(dateString);
   };
 
   return (
@@ -49,7 +57,12 @@ const index = () => {
       </Text>
       <View style={styles.container}>
         <Text style={styles.label}>Owner Name</Text>
-        <TextInput style={styles.input} placeholder="Enter your name" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your name"
+          value={vehicleData.ownerName}
+          onChangeText={(text) => changeownerName(text)}
+        />
 
         <Text style={styles.label}>Mobile No.</Text>
         <TextInput
@@ -57,6 +70,8 @@ const index = () => {
           placeholder="Mobile No."
           keyboardType="numeric"
           maxLength={10}
+          value={vehicleData.mobileNo}
+          onChangeText={(text) => changemobileNo(text)}
         />
 
         <Text style={styles.label}>D.O.B</Text>
@@ -64,10 +79,8 @@ const index = () => {
           style={styles.input}
           placeholder={"DD-MM-YYYY"}
           onFocus={() => setOpen(true)}
-          value={dateData}
+          value={vehicleData.DOB}
         />
-        {/* <Button onPress={() => setOpen(true)} title="Show date picker!" /> */}
-        {/* <Text>selected: {date.toLocaleString()}</Text> */}
 
         {open && (
           <DateTimePicker value={date} onChange={onChange} mode="date" />
@@ -78,7 +91,10 @@ const index = () => {
         <TextInput
           style={styles.input}
           placeholder="Enter your Aadhar CARD"
-          secureTextEntry
+          value={vehicleData.aadharNo}
+          keyboardType="number-pad"
+          maxLength={12}
+          onChangeText={(text) => changeaadharNo(text)}
         />
 
         <View
@@ -92,20 +108,22 @@ const index = () => {
           <Text style={styles.label}>Does Owner Have PAN Card?</Text>
           <CheckBox
             // style={{ flex: 1, padding: 10 }}
-            isChecked={isChecked}
+            isChecked={vehicleData.hasPAN}
             onClick={() => {
-              setIsChecked(!isChecked);
+              changehasPAN(!vehicleData.hasPAN);
             }}
           />
         </View>
 
-        {isChecked && (
-          <View>
+        {vehicleData.hasPAN && (
+          <View> 
             <Text style={styles.label}>PAN Card</Text>
             <TextInput
               style={styles.input}
               placeholder="Enter your PAN CARD"
-              secureTextEntry
+              value={vehicleData.PAN}
+              onChangeText={(text) => changePAN(text.toUpperCase())}
+              maxLength={10}
             />
           </View>
         )}
