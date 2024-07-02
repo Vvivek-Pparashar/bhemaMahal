@@ -110,6 +110,20 @@ export const VehicleDataProvider = ({ children }) => {
   ////////////// FORTH PAGE //////////////////
   ////////////////////////////////////////////
 
+  //// change Country
+  const changeCountry = (e) => setvehicleData((data) => ({ ...data, country: e }));
+
+  //// change State
+  const changeState = (e) =>
+    setvehicleData((data) => ({ ...data, state: e }));
+
+  //// change City
+  const changeCity = (e) =>
+    setvehicleData((data) => ({ ...data, city: e }));
+
+  //// change PinCode
+  const changePincode = (e) => setvehicleData((data) => ({ ...data, pincode: e }));
+
   return (
     <VehicleDataContext.Provider
       value={{
@@ -134,7 +148,11 @@ export const VehicleDataProvider = ({ children }) => {
         changeDOB,
         changeaadharNo,
         changehasPAN,
-        changePAN
+        changePAN,
+        changeCountry,
+        changeState,
+        changeCity,
+        changePincode
       }}
     >
       {children}
