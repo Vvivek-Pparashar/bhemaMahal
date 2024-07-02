@@ -7,13 +7,16 @@ import {
   View,
   SafeAreaView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 // import {  } from "react-native-safe-area-context";
 import RNPickerSelect from "react-native-picker-select";
 import { router } from "expo-router";
+import { VehicleDataContext } from "../../../context/newVehicle";
 
 const index = () => {
   const [selectedValue, setSelectedValue] = useState("");
+  const { vehicleData, changeCompany, changeModal, changeVariant } =
+    useContext(VehicleDataContext);
 
   return (
     <SafeAreaView
@@ -59,13 +62,28 @@ const index = () => {
         </View>
 
         <Text style={styles.label}>Company</Text>
-        <TextInput style={styles.input} placeholder="Enter Vehicle Company" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Vehicle Company"
+          value={vehicleData.company}
+          onChangeText={(text) => changeCompany(text)}
+        />
 
         <Text style={styles.label}>Modal</Text>
-        <TextInput style={styles.input} placeholder="Enter Vehicle Modal" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Vehicle Modal"
+          value={vehicleData.modal}
+          onChangeText={(text) => changeModal(text)}
+        />
 
         <Text style={styles.label}>Variant</Text>
-        <TextInput style={styles.input} placeholder="Enter Vehicle Variant" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter Vehicle Variant"
+          value={vehicleData.variant}
+          onChangeText={(text) => changeVariant(text)}
+        />
         <View
           style={{
             display: "flex",

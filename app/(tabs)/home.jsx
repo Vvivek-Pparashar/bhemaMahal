@@ -51,7 +51,7 @@ const index = () => {
         </LinearGradient>
       </Pressable>
 
-      <Pressable onPress={() => router.navigate("add")}>
+      <Pressable onPress={() => router.navigate("update")}>
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}

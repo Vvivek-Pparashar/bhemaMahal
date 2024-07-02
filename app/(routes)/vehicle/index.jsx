@@ -8,16 +8,33 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { router } from "expo-router";
 import CheckBox from "react-native-check-box";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { VehicleDataContext } from "../../../context/newVehicle";
 
 const index = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [date, setDate] = useState(new Date());
   const [dateData, setDateData] = useState("");
   const [open, setOpen] = useState(false);
+
+  const {
+    vehicleData,
+    changeMYear,
+    changePVNo,
+    changePVNo1,
+    changePVNo2,
+    changePVNo3,
+    changePVNo4,
+    changeengineNo,
+    changechassisNo,
+    changeic,
+    changeied,
+    changeserviceData,
+    changekmDriven,
+  } = useContext(VehicleDataContext);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -56,6 +73,8 @@ const index = () => {
             placeholder="Enter Manufacture Year"
             keyboardType="numeric"
             maxLength={4}
+            value={vehicleData.MYear}
+            onChangeText={(text) => changeMYear(text)}
           />
 
           <View
@@ -69,14 +88,14 @@ const index = () => {
             <Text style={styles.label}>Permanent Vehicle No?</Text>
             <CheckBox
               // style={{ flex: 1, padding: 10 }}
-              isChecked={isChecked}
+              isChecked={vehicleData.PVNo}
               onClick={() => {
-                setIsChecked(!isChecked);
+                changePVNo(!vehicleData.PVNo);
               }}
             />
           </View>
 
-          {isChecked && (
+          {vehicleData.PVNo && (
             <View>
               {/* <Text style={styles.label}>Vehicle No.</Text> */}
               <View style={{ display: "flex", flexDirection: "row", gap: 20 }}>
@@ -84,23 +103,31 @@ const index = () => {
                   style={{ ...styles.input, flex: 2 }}
                   placeholder="HR"
                   maxLength={2}
+                  value={vehicleData.PVNo1}
+                  onChangeText={(text) => changePVNo1(text)}
                 />
                 <TextInput
                   style={{ ...styles.input, flex: 2 }}
                   placeholder="31"
                   maxLength={2}
                   keyboardType="numeric"
+                  value={vehicleData.PVNo2}
+                  onChangeText={(text) => changePVNo2(text)}
                 />
                 <TextInput
                   style={{ ...styles.input, flex: 1 }}
                   placeholder="H"
                   maxLength={1}
+                  value={vehicleData.PVNo3}
+                  onChangeText={(text) => changePVNo3(text)}
                 />
                 <TextInput
                   style={{ ...styles.input, flex: 4 }}
                   placeholder="9641"
                   maxLength={4}
                   keyboardType="numeric"
+                  value={vehicleData.PVNo4}
+                  onChangeText={(text) => changePVNo4(text)}
                 />
               </View>
             </View>
@@ -110,24 +137,27 @@ const index = () => {
           <TextInput
             style={styles.input}
             placeholder="Engine number"
-            //   keyboardType="numeric"
             maxLength={17}
+            value={vehicleData.engineNo}
+            onChangeText={(text) => changeengineNo(text)}
           />
 
           <Text style={styles.label}>chassis number</Text>
           <TextInput
             style={styles.input}
             placeholder="chassis number"
-            //   keyboardType="numeric"
             maxLength={17}
+            value={vehicleData.chassisNo}
+            onChangeText={(text) => changechassisNo(text)}
           />
 
           <Text style={styles.label}>Insurance Company</Text>
           <TextInput
             style={styles.input}
             placeholder="Insurance Company"
-            //   keyboardType="numeric"
             maxLength={17}
+            value={vehicleData.ic}
+            onChangeText={(text) => changeic(text)}
           />
 
           <Text style={styles.label}>Insurance Expiry Date</Text>
@@ -156,6 +186,8 @@ const index = () => {
             placeholder="kilometer Driven"
             keyboardType="numeric"
             maxLength={9}
+            value={vehicleData.kmDriven}
+            onChangeText={(text) => changekmDriven(text)}
           />
 
           <View

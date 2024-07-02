@@ -1,15 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Link, Redirect } from 'expo-router'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Link, Redirect } from "expo-router";
+import { CounterProvider } from "../context/newVehicle";
 
 const index = () => {
   return (
     <View>
-      <Redirect href={"signIn"}/>
+      <Redirect href={"vehicle"} />
     </View>
-  )
-}
+  );
+};
 
-export default index
+export default index;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

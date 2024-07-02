@@ -6,6 +6,7 @@ import {
 import { Stack } from "expo-router";
 import { Image, StyleSheet, Text, View } from "react-native";
 import "react-native-reanimated";
+import { VehicleDataProvider } from "../context/newVehicle";
 const logo = require("../assets/images/logo.png");
 
 // import { useColorScheme } from '@/hooks/useColorScheme';
@@ -43,49 +44,58 @@ export default function RootLayout() {
   // const colorScheme = useColorScheme();
   return (
     // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-    <Stack>
-      <Stack.Screen name="index" />
-      <Stack.Screen
-        name="(routes)/signIn/index"
-        options={{
-          headerBackVisible: false,
-          // header:false,
-          headerShown:false,
+    <VehicleDataProvider>
+      <Stack>
+        <Stack.Screen name="index" />
+        <Stack.Screen
+          name="(routes)/signIn/index"
+          options={{
+            headerBackVisible: false,
+            // header:false,
+            headerShown: false,
 
-          headerTitle: (props) => <LogoTitle {...props} />
-        }}
-      />
-      <Stack.Screen
-        name="(routes)/add/index"
-        options={{
-          headerBackVisible: false,
-          headerTitle: (props) => <LogoTitle {...props} />,
-        }}
-      />
-      <Stack.Screen
-        name="(routes)/country/index"
-        options={{
-          headerBackVisible: false,
-          headerTitle: (props) => <LogoTitle {...props} />,
-        }}
-      />
-      <Stack.Screen
-        name="(routes)/owner/index"
-        options={{
-          headerBackVisible: false,
-          headerTitle: (props) => <LogoTitle {...props} />,
-        }}
-      />
-      <Stack.Screen
-        name="(routes)/vehicle/index"
-        options={{
-          headerBackVisible: false,
-          headerTitle: (props) => <LogoTitle {...props} />,
-        }}
-      />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="+not-found" />
-    </Stack>
+            headerTitle: (props) => <LogoTitle {...props} />,
+          }}
+        />
+        <Stack.Screen
+          name="(routes)/add/index"
+          options={{
+            headerBackVisible: false,
+            headerTitle: (props) => <LogoTitle {...props} />,
+          }}
+        />
+        <Stack.Screen
+          name="(routes)/country/index"
+          options={{
+            headerBackVisible: false,
+            headerTitle: (props) => <LogoTitle {...props} />,
+          }}
+        />
+        <Stack.Screen
+          name="(routes)/owner/index"
+          options={{
+            headerBackVisible: false,
+            headerTitle: (props) => <LogoTitle {...props} />,
+          }}
+        />
+        <Stack.Screen
+          name="(routes)/vehicle/index"
+          options={{
+            headerBackVisible: false,
+            headerTitle: (props) => <LogoTitle {...props} />,
+          }}
+        />
+        <Stack.Screen
+          name="(routes)/update/index"
+          options={{
+            headerBackVisible: false,
+            headerTitle: (props) => <LogoTitle {...props} />,
+          }}
+        />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+    </VehicleDataProvider>
     // </ThemeProvider>
   );
 }
