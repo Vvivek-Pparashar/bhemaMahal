@@ -191,7 +191,6 @@ const App = () => {
               padding: 20,
               borderRadius: 15,
               alignItems: "center",
-              //   marginTop: 20,
               flex: 1,
             }}
             onPress={() => {

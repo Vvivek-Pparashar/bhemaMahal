@@ -73,6 +73,13 @@ export default function RootLayout() {
               headerTitle: (props) => <LogoTitle {...props} />,
             }}
           />
+          <Stack.Screen
+            name="(routes)/addDealer/index"
+            options={{
+              headerBackVisible: false,
+              headerTitle: (props) => <LogoTitle {...props} />,
+            }}
+          />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>

@@ -16,7 +16,7 @@ const AdminHomeScreen = () => {
       <HomeLinearGradPress
         text_prop={"Add New Dealer"}
         icon_prop={"person-add-alt-1"}
-        link_prop={"add"}
+        link_prop={"addDealer"}
 
       />
 
