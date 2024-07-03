@@ -9,20 +9,23 @@ import {
 } from "react-native";
 import React, { useContext, useState } from "react";
 import { router } from "expo-router";
-import CheckBox from "react-native-check-box";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { VehicleDataContext } from "../../../context/newVehicle";
 
+import { DealerDetailContext } from "../../../context/dealerDetail";
 const index = () => {
   const {
-    vehicleData,
-    changeownerName,
-    changemobileNo,
-    changeDOB,
-    changeaadharNo,
-    changehasPAN,
-    changePAN,
-  } = useContext(VehicleDataContext);
+    dealerDetail,
+    changeDealerName,
+    changeDealerEmail,
+    changeDealerMobileNo,
+    changeDealerCity,
+    changeDealerDOB,
+    changeDealerState,
+    changeDealerPassword,
+    changeDealerAdmin,
+    changeDealerUserName,
+  } = useContext(DealerDetailContext);
 
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
@@ -38,117 +41,135 @@ const index = () => {
 
     setOpen(false);
     setDate(currentDate);
-    changeDOB(dateString);
+    changeDealerDOB(dateString);
   };
 
   return (
-    <SafeAreaView
-      style={{ padding: 20, backgroundColor: "white", minHeight: "100%" }}
-    >
-      <Text
-        style={{
-          fontSize: 25,
-          fontWeight: "bold",
-          marginTop: 10,
-          marginBottom: 30,
-        }}
-      >
-        Dealer Details
-      </Text>
-      <View style={styles.container}>
-        <Text style={styles.label}>Dealer Name</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Dealer Name"
-          value={vehicleData.ownerName}
-          onChangeText={(text) => changeownerName(text)}
-        />
-
-        <Text style={styles.label}>Dealer Email</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Dealer Email"
-          value={vehicleData.ownerName}
-          onChangeText={(text) => changeownerName(text)}
-        />
-
-        <Text style={styles.label}>Mobile No.</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Mobile No."
-          keyboardType="numeric"
-          maxLength={10}
-          value={vehicleData.mobileNo}
-          onChangeText={(text) => changemobileNo(text)}
-        />
-
-        <Text style={styles.label}>D.O.B</Text>
-        <TextInput
-          style={styles.input}
-          placeholder={"DD-MM-YYYY"}
-          onFocus={() => setOpen(true)}
-          value={vehicleData.DOB}
-        />
-
-        {open && (
-          <DateTimePicker value={date} onChange={onChange} mode="date" />
-        )}
-
-        <View
+    <SafeAreaView style={{ backgroundColor: "white", minHeight: "100%" }}>
+      <KeyboardAwareScrollView style={{ padding: 20 }}>
+        <Text
           style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: 20,
-            marginTop: 20,
+            fontSize: 25,
+            fontWeight: "bold",
+            marginTop: 10,
+            marginBottom: 30,
           }}
         >
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#f72828",
-              padding: 20,
-              borderRadius: 15,
-              alignItems: "center",
-              flex: 1,
-            }}
-            onPress={() => {
-              router.replace("vehicle");
-            }}
-          >
-            <Text
-              style={{
-                color: "white",
-                textTransform: "uppercase",
-                fontWeight: "600",
-              }}
-            >
-              Clear
-            </Text>
-          </TouchableOpacity>
+          Dealer Details
+        </Text>
+        <View style={styles.container}>
+          <Text style={styles.label}>Dealer Name</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Dealer Name"
+            value={dealerDetail.name}
+            onChangeText={(text) => changeDealerName(text)}
+          />
 
-          <TouchableOpacity
+          <Text style={styles.label}>Dealer Email</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Dealer Email"
+            value={dealerDetail.email}
+            onChangeText={(text) => changeDealerEmail(text)}
+          />
+
+          <Text style={styles.label}>Mobile No.</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Mobile No."
+            keyboardType="numeric"
+            maxLength={10}
+            value={dealerDetail.mobileNo}
+            onChangeText={(text) => changeDealerMobileNo(text)}
+          />
+
+          <Text style={styles.label}>D.O.B</Text>
+          <TextInput
+            style={styles.input}
+            placeholder={"DD-MM-YYYY"}
+            onFocus={() => setOpen(true)}
+            value={dealerDetail.DOB}
+          />
+
+          {open && (
+            <DateTimePicker value={date} onChange={onChange} mode="date" />
+          )}
+
+          <Text style={styles.label}>User Name</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter User Name"
+            value={dealerDetail.username}
+            onChangeText={(text) => changeDealerUserName(text)}
+          />
+
+          <Text style={styles.label}>Password</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Password"
+            keyboardType="numeric"
+            maxLength={10}
+            value={dealerDetail.password}
+            onChangeText={(text) => changeDealerPassword(text)}
+          />
+          {/* </KeyboardAvoidingView> */}
+          <View
             style={{
-              backgroundColor: "#9acd32",
-              padding: 20,
-              borderRadius: 15,
-              alignItems: "center",
-              flex: 1,
-            }}
-            onPress={() => {
-              router.replace("country");
+              display: "flex",
+              flexDirection: "row",
+              gap: 20,
+              marginTop: 20,
             }}
           >
-            <Text
+            <TouchableOpacity
               style={{
-                color: "#fff",
-                textTransform: "uppercase",
-                fontWeight: "600",
+                backgroundColor: "#f72828",
+                padding: 20,
+                borderRadius: 15,
+                alignItems: "center",
+                flex: 1,
+              }}
+              onPress={() => {
+                router.replace("home");
               }}
             >
-              Submit
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  color: "white",
+                  textTransform: "uppercase",
+                  fontWeight: "600",
+                }}
+              >
+                Clear
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#9acd32",
+                padding: 20,
+                borderRadius: 15,
+                alignItems: "center",
+                flex: 1,
+              }}
+              onPress={() => {
+                router.replace("home");
+              }}
+            >
+              <Text
+                style={{
+                  color: "#fff",
+                  textTransform: "uppercase",
+                  fontWeight: "600",
+                }}
+              >
+                Submit
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
