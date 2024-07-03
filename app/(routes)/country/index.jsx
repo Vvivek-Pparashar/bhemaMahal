@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
-  Alert,
   SafeAreaView,
-  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -11,11 +9,13 @@ import {
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
-import RNPickerSelect from "react-native-picker-select";
 import { router } from "expo-router";
-// import {BASE_URL, API_KEY} from '@env';
+import { VehicleDataContext } from "../../../context/newVehicle";
 
 const App = () => {
+  const { vehicleData, changeCountry, changeState, changeCity, changePincode } =
+    useContext(VehicleDataContext);
+
   const BASE_URL = "https://api.countrystatecity.in/v1";
   const API_KEY = "NHhvOEcyWk50N2Vna3VFTE00bFp3MjFKR0ZEOUhkZlg4RTk1MlJlaA==";
   const [countryData, setCountryData] = useState([]);
@@ -140,7 +140,7 @@ const App = () => {
           valueField="value"
           placeholder={!isFocus ? "Select country" : "..."}
           searchPlaceholder="Search..."
-          value={country}
+          value={vehicleData.country}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={(item) => {
@@ -148,6 +148,7 @@ const App = () => {
             handleState(item.value);
             setCountryName(item.label);
             setIsFocus(false);
+            changeCountry(item.value)
           }}
         />
         <Text style={styles.label}>State</Text>
@@ -164,7 +165,7 @@ const App = () => {
           valueField="value"
           placeholder={!isFocus ? "Select state" : "..."}
           searchPlaceholder="Search..."
-          value={state}
+          value={vehicleData.state}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={(item) => {
@@ -172,6 +173,7 @@ const App = () => {
             handleCity(country, item.value);
             setStateName(item.label);
             setIsFocus(false);
+            changeState(item.value)
           }}
         />
         <Text style={styles.label}>City</Text>
@@ -189,21 +191,22 @@ const App = () => {
           valueField="value"
           placeholder={!isFocus ? "Select city" : "..."}
           searchPlaceholder="Search..."
-          value={city}
+          value={vehicleData.city}
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={(item) => {
             setCity(item.value);
             setCityName(item.label);
             setIsFocus(false);
+            changeCity(item.value)
           }}
         />
         <Text style={styles.label}>PinCode</Text>
         <TextInput
           style={styles.input}
           placeholder="Enter Your PinCode"
-          //   value={name}
-          //   onChangeText={setName}
+            value={vehicleData.pincode}
+            onChangeText={(text) => changePincode(text)}
         />
         <View
           style={{
