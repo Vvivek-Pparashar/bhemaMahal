@@ -27,7 +27,7 @@ const base = {
   aadharNo: "",
   hasPAN: false,
   PAN: "",
-  country: "",
+  country: "India",
   state: "",
   city: "",
   pincode: "",

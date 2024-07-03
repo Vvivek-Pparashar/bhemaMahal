@@ -14,22 +14,54 @@ import React, { useState, useEffect } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Link, Redirect, router } from "expo-router";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const index = () => {
-  const [email, setEmail] = useState("");
+  const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const token = await AsyncStorage.getItem("userData");
+
+        if (token) {
+          setTimeout(() => {
+            router.replace("/(tabs)/home");
+          }, 400);
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    checkLoginStatus();
+  }, []);
+
   const handleLogin = () => {
     const user = {
-      email: email,
+      username: username,
       password: password,
     };
 
-    router.replace("/(tabs)/home");
+    axios
+      .post("http://192.168.29.251:3000/login", user)
+      .then((response) => {
+        console.log(response.data);
+        AsyncStorage.setItem("userData", JSON.stringify(response.data));
+        console.log("done");
+        router.replace("/(tabs)/home");
+      })
+      .catch((error) => {
+        Alert.alert("Login error");
+        console.log("error ", error);
+      });
   };
   return (
     <ScrollView style={{ minHeight: "100%", backgroundColor: "white" }}>
       <SafeAreaView
-        style={{ flex: 1, alignItems: "center", minHeight:"100%" }}
+        style={{ flex: 1, alignItems: "center", minHeight: "100%" }}
       >
         <View style={{ marginTop: 50 }}>
           <Image
@@ -64,16 +96,16 @@ const index = () => {
                 color="gray"
               />
               <TextInput
-                value={email}
-                onChangeText={(text) => setEmail(text)}
+                value={username}
+                onChangeText={(text) => setusername(text)}
                 placeholderTextColor={"gray"}
                 style={{
                   color: "gray",
                   marginVertical: 10,
                   width: 300,
-                  fontSize: email ? 16 : 16,
+                  fontSize: 16,
                 }}
-                placeholder="enter your Email"
+                placeholder="enter your username"
               />
             </View>
 
