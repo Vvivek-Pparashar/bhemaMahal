@@ -10,14 +10,17 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { Link, Redirect, router } from "expo-router";
+import { router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { UserDataContext } from "../../../context/userContext";
 
 const index = () => {
+  const { userData, changeUserData } = useContext(UserDataContext);
+
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -25,9 +28,9 @@ const index = () => {
     const checkLoginStatus = async () => {
       try {
         const token = await AsyncStorage.getItem("userData");
-
         if (token) {
           setTimeout(() => {
+            changeUserData(JSON.parse(token));
             router.replace("/(tabs)/home");
           }, 400);
         }
@@ -35,7 +38,6 @@ const index = () => {
         console.log("error", error);
       }
     };
-
     checkLoginStatus();
   }, []);
 
@@ -51,6 +53,7 @@ const index = () => {
         console.log(response.data);
         AsyncStorage.setItem("userData", JSON.stringify(response.data));
         console.log("done");
+        changeUserData(response.data);
         router.replace("/(tabs)/home");
       })
       .catch((error) => {

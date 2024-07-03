@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
-import { Link, Redirect } from "expo-router";
-import { CounterProvider } from "../context/newVehicle";
+import { Redirect } from "expo-router";
 
 const index = () => {
   return (

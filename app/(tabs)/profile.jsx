@@ -1,13 +1,14 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
-// import LinearGradient from 'react-native-linear-gradient';
+import React, { useContext } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 const staticImage = require("../../assets/images/profile.png");
+import { UserDataContext } from "../../context/userContext";
 
 const profile = () => {
+  const { userData } = useContext(UserDataContext);
+  
   return (
     <View style={{ backgroundColor: "white", minHeight: "100%", padding: 20 }}>
-      {/* background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); */}
       <LinearGradient
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
@@ -18,7 +19,6 @@ const profile = () => {
           display: "flex",
           flexDirection: "row",
           gap:20,
-          // justifyContent:"center",
           alignItems:"center",
           paddingLeft:30
         }}
@@ -30,10 +30,10 @@ const profile = () => {
         />
         <View>
           <Text style={{ fontSize: 25, fontWeight: 500, }}>
-            Vivek Parashar
+            {userData.name}
           </Text>
           <Text style={{ fontSize: 13, letterSpacing: 0.7,  }}>
-            Location: Jind, Haryana
+            Location: {userData.city}, {userData.state}
           </Text>
         </View>
       </LinearGradient>

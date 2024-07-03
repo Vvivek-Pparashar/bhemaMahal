@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const index = () => {
+const DealerHomeScreen = () => {
   return (
     <View>
-      <Text>index</Text>
+      <Text>DealerHomeScreen</Text>
     </View>
   )
 }
 
-export default index
+export default DealerHomeScreen
 
 const styles = StyleSheet.create({})
