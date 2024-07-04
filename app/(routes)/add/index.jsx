@@ -162,18 +162,3 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-
-// import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-// import React from 'react'
-
-// const index = () => {
-//   return (
-//     <SafeAreaView>
-//       <Text>Hlo</Text>
-//     </SafeAreaView>
-//   )
-// }
-
-// export default index
-
-// const styles = StyleSheet.create({})

@@ -56,6 +56,10 @@ export const DealerDetailProvider = ({ children }) => {
   const changeDealerAdmin = (e) =>
     setDealerDetail((data) => ({ ...data, admin: e }));
 
+  //// Set To Null
+
+  const changeSetToNull = () => setDealerDetail({...base});
+
   return (
     <DealerDetailContext.Provider
       value={{
@@ -68,7 +72,8 @@ export const DealerDetailProvider = ({ children }) => {
         changeDealerState,
         changeDealerPassword,
         changeDealerAdmin,
-        changeDealerUserName
+        changeDealerUserName,
+        changeSetToNull
       }}
     >
       {children}

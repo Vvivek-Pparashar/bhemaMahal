@@ -92,7 +92,12 @@ const App = () => {
       </Text>
       <View style={styles.container}>
         <Text style={styles.label}>Country</Text>
-        <TextInput editable={false} selectTextOnFocus={false} value={vehicleData.country} style={[styles.input,]}/>
+        <TextInput
+          editable={false}
+          selectTextOnFocus={false}
+          value={vehicleData.country}
+          style={[styles.input]}
+        />
         <Text style={styles.label}>State</Text>
         <Dropdown
           style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
@@ -111,7 +116,6 @@ const App = () => {
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={(item) => {
-            // setState(item.value);
             handleCity(item.value);
             setStateName(item.label);
             setIsFocus(false);
@@ -137,7 +141,6 @@ const App = () => {
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
           onChange={(item) => {
-            // setCity(item.value);
             setCityName(item.label);
             setIsFocus(false);
             changeCity(item.label);
@@ -255,7 +258,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   input: {
-    color:"black",
+    color: "black",
     borderWidth: 1,
     borderColor: "#ccc",
     padding: 10,

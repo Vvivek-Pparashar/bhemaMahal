@@ -6,7 +6,7 @@ import { UserDataContext } from "../../context/userContext";
 
 const profile = () => {
   const { userData } = useContext(UserDataContext);
-  
+
   return (
     <View style={{ backgroundColor: "white", minHeight: "100%", padding: 20 }}>
       <LinearGradient
@@ -18,25 +18,26 @@ const profile = () => {
           borderRadius: 15,
           display: "flex",
           flexDirection: "row",
-          gap:20,
-          alignItems:"center",
-          paddingLeft:30
+          gap: 20,
+          alignItems: "center",
+          paddingLeft: 30,
         }}
       >
-        {/* Your content here */}
         <Image
           source={staticImage}
           style={{ width: 60, height: 60, borderRadius: 30 }}
         />
         <View>
-          <Text style={{ fontSize: 25, fontWeight: 500, }}>
-            {userData.name}
-          </Text>
-          <Text style={{ fontSize: 13, letterSpacing: 0.7,  }}>
+          <Text style={{ fontSize: 25, fontWeight: 500 }}>{userData.name}</Text>
+          <Text style={{ fontSize: 13, letterSpacing: 0.7 }}>
             Location: {userData.city}, {userData.state}
           </Text>
         </View>
       </LinearGradient>
+
+      <button onClick={()=>{
+        
+      }}> Logout</button>
     </View>
   );
 };
