@@ -14,11 +14,13 @@ const base = {
   password: "",
   admin: false,
   username: "",
+  stateValue: "",
+  cityValue: "",
 };
 
 // Create a provider component
 export const DealerDetailProvider = ({ children }) => {
-  const [dealerDetail, setDealerDetail] = useState({});
+  const [dealerDetail, setDealerDetail] = useState({...base});
 
   //// Change Name
   const changeDealerName = (e) =>
@@ -39,10 +41,17 @@ export const DealerDetailProvider = ({ children }) => {
   //// Change City
   const changeDealerCity = (e) =>
     setDealerDetail((data) => ({ ...data, city: e }));
+  //// Change Password
+  const changeDealerCityValue = (e) =>
+    setDealerDetail((data) => ({ ...data, cityValue: e }));
 
   //// Change State
   const changeDealerState = (e) =>
     setDealerDetail((data) => ({ ...data, state: e }));
+
+  //// Change Password
+  const changeDealerStateValue = (e) =>
+    setDealerDetail((data) => ({ ...data, stateValue: e }));
 
   //// Change Password
   const changeDealerPassword = (e) =>
@@ -58,7 +67,7 @@ export const DealerDetailProvider = ({ children }) => {
 
   //// Set To Null
 
-  const changeSetToNull = () => setDealerDetail({...base});
+  const changeSetToNull = () => setDealerDetail({ ...base });
 
   return (
     <DealerDetailContext.Provider
@@ -73,7 +82,9 @@ export const DealerDetailProvider = ({ children }) => {
         changeDealerPassword,
         changeDealerAdmin,
         changeDealerUserName,
-        changeSetToNull
+        changeSetToNull,
+        changeDealerStateValue,
+        changeDealerCityValue,
       }}
     >
       {children}

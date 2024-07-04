@@ -1,11 +1,13 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Button, Image, StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 const staticImage = require("../../assets/images/profile.png");
 import { UserDataContext } from "../../context/userContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
 
 const profile = () => {
-  const { userData } = useContext(UserDataContext);
+  const { userData, changeUserDataNull } = useContext(UserDataContext);
 
   return (
     <View style={{ backgroundColor: "white", minHeight: "100%", padding: 20 }}>
@@ -35,9 +37,14 @@ const profile = () => {
         </View>
       </LinearGradient>
 
-      <button onClick={()=>{
-        
-      }}> Logout</button>
+      <Button
+        title="Logout"
+        onPress={() => {
+          AsyncStorage.clear();
+          changeUserDataNull();
+          router.replace("signIn");
+        }}
+      />
     </View>
   );
 };

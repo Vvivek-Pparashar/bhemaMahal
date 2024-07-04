@@ -33,7 +33,7 @@ const Post = require("./models/post");
 app.post("/register", async (req, res) => {
   console.log("here");
   try {
-    const { name, email, password, admin, state, city, username } = req.body;
+    const { name, email, password, admin, state, city, username, DOB, mobileNo } = req.body;
 
     // const existingUser = await User.findOne({ email });
     // if (existingUser) {
@@ -49,8 +49,8 @@ app.post("/register", async (req, res) => {
       state,
       city,
       username,
-      // mobileNo,
-      // DOB
+      mobileNo,
+      DOB
     });
 
     //save the  user to the database

@@ -1,4 +1,5 @@
 import {
+  Alert,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -18,15 +19,39 @@ const index = () => {
   const { dealerDetail, changeSetToNull } = useContext(DealerDetailContext);
 
   const onPressAddDealer = () => {
-    axios
-      .post("http://192.168.29.251:3000/register", dealerDetail)
-      .then((response) => {
-        changeSetToNull();
-        router.replace("home");
-      })
-      .catch((error) => {
-        console.log("error creating post", error);
-      });
+    if (
+      !dealerDetail.username ||
+      !dealerDetail.password ||
+      !dealerDetail.city ||
+      !dealerDetail.state ||
+      !dealerDetail.DOB ||
+      !dealerDetail.email ||
+      !dealerDetail.name ||
+      !dealerDetail.mobileNo
+    ) {
+      Alert.alert(
+        "Fill All Columns",
+        `Empty Columns List \n${dealerDetail.name ? "" : "\nName"}${
+          dealerDetail.mobileNo ? "" : "\nMobileNo"
+        }${dealerDetail.email ? "" : "\nEmail"}${
+          dealerDetail.DOB ? "" : "\nDOB"
+        }${dealerDetail.username ? "" : "\nUsername"}${
+          dealerDetail.password ? "" : "\nPassword"
+        }${dealerDetail.state ? "" : "\nState"}${
+          dealerDetail.city ? "" : "\nCity"
+        }  `
+      );
+    } else {
+      axios
+        .post("http://192.168.29.251:3000/register", dealerDetail)
+        .then((response) => {
+          changeSetToNull();
+          router.replace("home");
+        })
+        .catch((error) => {
+          console.log("error creating post", error);
+        });
+    }
   };
   return (
     <SafeAreaView style={{ backgroundColor: "white", minHeight: "100%" }}>
@@ -65,7 +90,7 @@ const index = () => {
                   flex: 1,
                 }}
                 onPress={() => {
-                  console.log(dealerDetail);
+                  changeSetToNull();
                   router.replace("home");
                 }}
               >

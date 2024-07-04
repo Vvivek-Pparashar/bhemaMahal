@@ -23,15 +23,9 @@ const FirstComp = () => {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
 
-    const year = selectedDate.getFullYear();
-    const month = selectedDate.getMonth() + 1;
-    const day = selectedDate.getDate();
-
-    const dateString = `${day}-${month}-${year}`;
-
     setOpen(false);
     setDate(currentDate);
-    changeDealerDOB(dateString);
+    changeDealerDOB(currentDate);
   };
   return (
     <View>
@@ -66,7 +60,11 @@ const FirstComp = () => {
         style={styles.input}
         placeholder={"DD-MM-YYYY"}
         onFocus={() => setOpen(true)}
-        value={dealerDetail.DOB}
+        value={
+          dealerDetail.DOB
+            ? dealerDetail.DOB.toLocaleString().split(",")[0]
+            : ""
+        }
       />
 
       {open && <DateTimePicker value={date} onChange={onChange} mode="date" />}

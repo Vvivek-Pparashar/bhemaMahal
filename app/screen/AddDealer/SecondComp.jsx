@@ -5,15 +5,19 @@ import axios from "axios";
 import { DealerDetailContext } from "../../../context/dealerDetail";
 
 const SecondComp = () => {
-  const { dealerDetail, changeDealerState, changeDealerCity } =
-    useContext(DealerDetailContext);
+  const {
+    dealerDetail,
+    changeDealerState,
+    changeDealerCity,
+    changeDealerStateValue,
+    changeDealerCityValue,
+  } = useContext(DealerDetailContext);
 
   const BASE_URL = "https://api.countrystatecity.in/v1";
   const API_KEY = "NHhvOEcyWk50N2Vna3VFTE00bFp3MjFKR0ZEOUhkZlg4RTk1MlJlaA==";
+
   const [stateData, setStateData] = useState([]);
   const [cityData, setCityData] = useState([]);
-  const [stateName, setStateName] = useState(null);
-  const [cityName, setCityName] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
@@ -36,6 +40,8 @@ const SecondComp = () => {
           });
         }
         setStateData(stateArray);
+        if (dealerDetail.cityValue) handleCity(dealerDetail.stateValue);
+        console.log("tttttt");
       })
       .catch(function (error) {
         console.log(error);
@@ -84,12 +90,12 @@ const SecondComp = () => {
         valueField="value"
         placeholder={!isFocus ? "Select state" : "..."}
         searchPlaceholder="Search..."
-        value={dealerDetail.state}
+        value={dealerDetail.stateValue}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={(item) => {
+          changeDealerStateValue(item.value);
           handleCity(item.value);
-          setStateName(item.label);
           setIsFocus(false);
           changeDealerState(item.label);
         }}
@@ -107,13 +113,13 @@ const SecondComp = () => {
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? "Select city" : "..."}
+        placeholder={!isFocus ? "Select city..." : "..."}
         searchPlaceholder="Search..."
-        value={dealerDetail.city}
+        value={dealerDetail.cityValue}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onChange={(item) => {
-          setCityName(item.label);
+          changeDealerCityValue(item.value);
           setIsFocus(false);
           changeDealerCity(item.label);
         }}
