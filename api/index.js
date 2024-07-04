@@ -33,14 +33,18 @@ const Post = require("./models/post");
 app.post("/register", async (req, res) => {
   console.log("here");
   try {
-    const { name, email, password, admin, state, city, username, DOB, mobileNo } = req.body;
+    const {
+      name,
+      email,
+      password,
+      admin,
+      state,
+      city,
+      username,
+      DOB,
+      mobileNo,
+    } = req.body;
 
-    // const existingUser = await User.findOne({ email });
-    // if (existingUser) {
-    //   return res.status(400).json({ message: "Email already registered" });
-    // }
-
-    //create a new user
     const newUser = new User({
       name,
       email,
@@ -50,7 +54,7 @@ app.post("/register", async (req, res) => {
       city,
       username,
       mobileNo,
-      DOB
+      DOB,
     });
 
     //save the  user to the database
@@ -78,12 +82,24 @@ app.post("/login", async (req, res) => {
       return res.status(404).json({ message: "Invalid password" });
     }
 
-    // const token = jwt.sign({ userId: user._id }, secretKey);
-
     console.log(user);
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Login failed" });
+  }
+});
+
+app.get("/get-Dealers", async (req, res) => {
+  try {
+    const users = await User.find()
+      // .populate("user", "name")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json(users);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "An error occurred while getting the posts" });
   }
 });
