@@ -21,9 +21,9 @@ const AdminHomeScreen = () => {
       />
 
       <HomeLinearGradPress
-        text_prop={"Dealer Report"}
+        text_prop={"Dealer Details"}
         icon_prop={"data-usage"}
-        link_prop={"add"}
+        link_prop={"dealerDetails"}
       />
 
       <HomeLinearGradPress
