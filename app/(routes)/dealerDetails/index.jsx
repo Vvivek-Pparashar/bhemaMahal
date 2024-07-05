@@ -14,8 +14,6 @@ const index = () => {
         let data = [];
         let count = response.data.length;
 
-        console.log("count", count);
-
         for (let i = 0; i < count; i++) {
           let temp = response.data[i];
           let date = new Date(temp.DOB);
@@ -32,8 +30,6 @@ const index = () => {
           ]);
         }
         setAllDealers(data);
-
-        console.log(response.data);
       } catch (error) {
         console.log("error fetching posts", error);
       }

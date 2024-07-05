@@ -13,8 +13,7 @@ const jwt = require("jsonwebtoken");
 
 mongoose
   .connect(
-    "mongodb+srv://vivek:xJei3fTripkEhWEh@alldata.currj2j.mongodb.net/org",
-    {}
+    "mongodb+srv://vivek:xJei3fTripkEhWEh@alldata.currj2j.mongodb.net/org"
   )
   .then(() => {
     console.log("Connected to MongoDB");
@@ -28,7 +27,8 @@ app.listen(port, () => {
 });
 
 const User = require("./models/user");
-const Post = require("./models/post");
+// const Post = require("./models/post");
+const Vehicle = require('./models/vehicle')
 
 app.post("/register", async (req, res) => {
   console.log("here");
