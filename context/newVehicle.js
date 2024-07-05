@@ -132,6 +132,7 @@ export const VehicleDataProvider = ({ children }) => {
     <VehicleDataContext.Provider
       value={{
         vehicleData,
+        changeType,
         changeCompany,
         changeModal,
         changeVariant,

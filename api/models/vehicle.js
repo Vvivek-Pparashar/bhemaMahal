@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { server } = require("typescript");
 
 const vehicleSchema = new mongoose.Schema({
   type: {
