@@ -58,7 +58,7 @@ export const VehicleDataProvider = ({ children }) => {
 
   const changeMYear = (e) => setvehicleData((data) => ({ ...data, MYear: e }));
   //// changePVNo
-  const changePVNo = (e) => setvehicleData((data) => ({ ...data, hasPVNo: e }));
+  const changehasPVNo = (e) => setvehicleData((data) => ({ ...data, hasPVNo: e }));
   //// changePVNo1
   const changePVNo1 = (e) => setvehicleData((data) => ({ ...data, PVNo1: e }));
   //// changePVNo2
@@ -78,8 +78,8 @@ export const VehicleDataProvider = ({ children }) => {
   //// change ied
   const changeied = (e) => setvehicleData((data) => ({ ...data, ied: e }));
   //// change serviceData
-  const changeserviceData = (e) =>
-    setvehicleData((data) => ({ ...data, serviceData: e }));
+  const changeserviceDate = (e) =>
+    setvehicleData((data) => ({ ...data, serviceDate: e }));
   //// change kmDriven
   const changekmDriven = (e) =>
     setvehicleData((data) => ({ ...data, kmDriven: e }));
@@ -137,7 +137,7 @@ export const VehicleDataProvider = ({ children }) => {
         changeModal,
         changeVariant,
         changeMYear,
-        changePVNo,
+        changehasPVNo,
         changePVNo1,
         changePVNo2,
         changePVNo3,
@@ -146,7 +146,7 @@ export const VehicleDataProvider = ({ children }) => {
         changechassisNo,
         changeic,
         changeied,
-        changeserviceData,
+        changeserviceDate,
         changekmDriven,
         changeownerName,
         changemobileNo,

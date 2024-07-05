@@ -1,5 +1,4 @@
 import {
-  Button,
   StyleSheet,
   Text,
   TextInput,
@@ -9,8 +8,7 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-import React, { useContext, useState } from "react";
-// import {  } from "react-native-safe-area-context";
+import React, { useContext } from "react";
 import RNPickerSelect from "react-native-picker-select";
 import { router } from "expo-router";
 import { VehicleDataContext } from "../../../context/newVehicle";
