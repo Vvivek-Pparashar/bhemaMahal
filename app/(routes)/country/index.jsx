@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -11,17 +12,23 @@ import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
 import { router } from "expo-router";
 import { VehicleDataContext } from "../../../context/newVehicle";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const App = () => {
-  const { vehicleData, changeState, changeCity, changePincode } =
-    useContext(VehicleDataContext);
+  const {
+    vehicleData,
+    changeState,
+    changeCity,
+    changeCityValue,
+    changeStateValue,
+    changePincode,
+  } = useContext(VehicleDataContext);
 
   const BASE_URL = "https://api.countrystatecity.in/v1";
   const API_KEY = "NHhvOEcyWk50N2Vna3VFTE00bFp3MjFKR0ZEOUhkZlg4RTk1MlJlaA==";
+
   const [stateData, setStateData] = useState([]);
   const [cityData, setCityData] = useState([]);
-  const [stateName, setStateName] = useState(null);
-  const [cityName, setCityName] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
@@ -44,6 +51,7 @@ const App = () => {
           });
         }
         setStateData(stateArray);
+        if (vehicleData.cityValue) handleCity(vehicleData.stateValue);
       })
       .catch(function (error) {
         console.log(error);
@@ -76,146 +84,159 @@ const App = () => {
       });
   };
 
+  const handleNextClick = () => {
+    if (!vehicleData.state || !vehicleData.city || !vehicleData.pincode) {
+      Alert.alert(
+        "Fill All Columns",
+        `Empty Columns List\n${vehicleData.state ? "" : "\nState"}${
+          vehicleData.city ? "" : "\nCity"
+        }${vehicleData.pincode ? "" : "\nPinCode"}`
+      );
+    } else {
+      router.replace("(tabs)/home");
+    }
+  };
+
   return (
     <SafeAreaView
       style={{ padding: 20, backgroundColor: "white", minHeight: "100%" }}
     >
-      <Text
-        style={{
-          fontSize: 25,
-          fontWeight: "bold",
-          marginTop: 10,
-          marginBottom: 30,
-        }}
-      >
-        Add Address Details
-      </Text>
-      <View style={styles.container}>
-        <Text style={styles.label}>Country</Text>
-        <TextInput
-          editable={false}
-          selectTextOnFocus={false}
-          value={vehicleData.country}
-          style={[styles.input]}
-        />
-        <Text style={styles.label}>State</Text>
-        <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={stateData}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? "Select state" : "..."}
-          searchPlaceholder="Search..."
-          value={vehicleData.state}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={(item) => {
-            handleCity(item.value);
-            setStateName(item.label);
-            setIsFocus(false);
-            changeState(item.label);
-          }}
-        />
-        <Text style={styles.label}>City</Text>
-
-        <Dropdown
-          style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={cityData}
-          search
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? "Select city" : "..."}
-          searchPlaceholder="Search..."
-          value={vehicleData.city}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={(item) => {
-            setCityName(item.label);
-            setIsFocus(false);
-            changeCity(item.label);
-          }}
-        />
-        <Text style={styles.label}>PinCode</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Your PinCode"
-          value={vehicleData.pincode}
-          keyboardType="number-pad"
-          onChangeText={(text) => changePincode(text)}
-        />
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: 20,
-            marginTop: 20,
-          }}
-        >
-          <TouchableOpacity
+      <ScrollView>
+        <KeyboardAwareScrollView>
+          <Text
             style={{
-              backgroundColor: "#DFE0E2",
-              padding: 20,
-              borderRadius: 15,
-              alignItems: "center",
-              flex: 1,
-            }}
-            onPress={() => {
-              console.log(
-                `You have selected\nCountry: ${vehicleData.country}\nState: ${vehicleData.state}\nCity: ${vehicleData.city}`
-              );
-              router.replace("owner");
+              fontSize: 25,
+              fontWeight: "bold",
+              marginTop: 10,
+              marginBottom: 30,
             }}
           >
-            <Text
+            Add Address Details
+          </Text>
+          <View style={styles.container}>
+            <Text style={styles.label}>Country</Text>
+            <TextInput
+              editable={false}
+              selectTextOnFocus={false}
+              value={vehicleData.country}
+              style={[styles.input]}
+            />
+            <Text style={styles.label}>State</Text>
+            <Dropdown
+              style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={stateData}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={!isFocus ? "Select state" : "..."}
+              searchPlaceholder="Search..."
+              value={vehicleData.stateValue}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+              onChange={(item) => {
+                changeStateValue(item.value);
+                handleCity(item.value);
+                setIsFocus(false);
+                changeState(item.label);
+              }}
+            />
+            <Text style={styles.label}>City</Text>
+
+            <Dropdown
+              style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={cityData}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={!isFocus ? "Select city" : "..."}
+              searchPlaceholder="Search..."
+              value={vehicleData.cityValue}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+              onChange={(item) => {
+                changeCityValue(item.value);
+                setIsFocus(false);
+                changeCity(item.label);
+              }}
+            />
+            <Text style={styles.label}>PinCode</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter Your PinCode"
+              value={vehicleData.pincode}
+              keyboardType="number-pad"
+              onChangeText={(text) => changePincode(text)}
+            />
+            <View
               style={{
-                color: "black",
-                textTransform: "uppercase",
-                fontWeight: "600",
+                display: "flex",
+                flexDirection: "row",
+                gap: 20,
+                marginTop: 20,
               }}
             >
-              Back
-            </Text>
-          </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#DFE0E2",
+                  padding: 20,
+                  borderRadius: 15,
+                  alignItems: "center",
+                  flex: 1,
+                }}
+                onPress={() => {
+                  console.log(
+                    `You have selected\nCountry: ${vehicleData.country}\nState: ${vehicleData.state}\nCity: ${vehicleData.city}`
+                  );
+                  router.replace("owner");
+                }}
+              >
+                <Text
+                  style={{
+                    color: "black",
+                    textTransform: "uppercase",
+                    fontWeight: "600",
+                  }}
+                >
+                  Back
+                </Text>
+              </TouchableOpacity>
 
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#9acd32",
-              padding: 20,
-              borderRadius: 15,
-              alignItems: "center",
-              flex: 1,
-            }}
-            onPress={() => {
-              console.log(
-                `You have selected\nCountry: ${vehicleData.country}\nState: ${vehicleData.state}\nCity: ${vehicleData.city}`
-              );
-
-              router.replace("(tabs)/home");
-            }}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                textTransform: "uppercase",
-                fontWeight: "600",
-              }}
-            >
-              Submit
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#9acd32",
+                  padding: 20,
+                  borderRadius: 15,
+                  alignItems: "center",
+                  flex: 1,
+                }}
+                onPress={() => {
+                  handleNextClick();
+                }}
+              >
+                <Text
+                  style={{
+                    color: "#fff",
+                    textTransform: "uppercase",
+                    fontWeight: "600",
+                  }}
+                >
+                  Submit
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </KeyboardAwareScrollView>
+      </ScrollView>
     </SafeAreaView>
   );
 };

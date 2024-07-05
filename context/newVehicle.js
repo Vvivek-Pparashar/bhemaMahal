@@ -31,6 +31,8 @@ const base = {
   country: "India",
   state: "",
   city: "",
+  cityValue: "",
+  stateValue: "",
   pincode: "",
 };
 
@@ -58,7 +60,8 @@ export const VehicleDataProvider = ({ children }) => {
 
   const changeMYear = (e) => setvehicleData((data) => ({ ...data, MYear: e }));
   //// changePVNo
-  const changehasPVNo = (e) => setvehicleData((data) => ({ ...data, hasPVNo: e }));
+  const changehasPVNo = (e) =>
+    setvehicleData((data) => ({ ...data, hasPVNo: e }));
   //// changePVNo1
   const changePVNo1 = (e) => setvehicleData((data) => ({ ...data, PVNo1: e }));
   //// changePVNo2
@@ -124,6 +127,13 @@ export const VehicleDataProvider = ({ children }) => {
   //// change City
   const changeCity = (e) => setvehicleData((data) => ({ ...data, city: e }));
 
+  //// change StateValue
+  const changeStateValue = (e) =>
+    setvehicleData((data) => ({ ...data, stateValue: e }));
+
+  //// change CityValue
+  const changeCityValue = (e) =>
+    setvehicleData((data) => ({ ...data, cityValue: e }));
   //// change PinCode
   const changePincode = (e) =>
     setvehicleData((data) => ({ ...data, pincode: e }));
@@ -157,6 +167,8 @@ export const VehicleDataProvider = ({ children }) => {
         changeCountry,
         changeState,
         changeCity,
+        changeCityValue,
+        changeStateValue,
         changePincode,
       }}
     >

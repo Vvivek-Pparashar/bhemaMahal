@@ -41,7 +41,6 @@ const SecondComp = () => {
         }
         setStateData(stateArray);
         if (dealerDetail.cityValue) handleCity(dealerDetail.stateValue);
-        console.log("tttttt");
       })
       .catch(function (error) {
         console.log(error);
