@@ -12,8 +12,10 @@ import React, { useContext, useState } from "react";
 import { router } from "expo-router";
 import CheckBox from "react-native-check-box";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { Dropdown } from "react-native-element-dropdown";
 import { VehicleDataContext } from "../../../context/newVehicle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import insuranceList from "../../../assets/data/insuranceList";
 
 const index = () => {
   const [dateED, setDateED] = useState(new Date());
@@ -201,12 +203,22 @@ const index = () => {
             />
 
             <Text style={styles.label}>Insurance Company</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Insurance Company"
-              maxLength={17}
+
+            <Dropdown
+              style={[styles.dropdown]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={"Insurance Company"}
+              searchPlaceholder="Search..."
               value={vehicleData.ic}
-              onChangeText={(text) => changeic(text)}
+              data={insuranceList}
+              onChange={(item) => changeic(item.value)}
             />
 
             <Text style={styles.label}>Insurance Expiry Date</Text>
@@ -330,5 +342,29 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginBottom: 20,
+  },
+
+  dropdown: {
+    height: 50,
+    borderColor: "gray",
+    borderWidth: 0.5,
+    borderRadius: 5,
+    paddingHorizontal: 8,
+    marginBottom: 20,
+  },
+
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
   },
 });
