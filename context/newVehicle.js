@@ -6,11 +6,12 @@ export const VehicleDataContext = createContext();
 
 // Create a provider component
 const base = {
+  type: "",
   company: "",
   modal: "",
   variant: "",
   MYear: "",
-  PVNo: false,
+  hasPVNo: false,
   PVNo1: "",
   PVNo2: "",
   PVNo3: "",
@@ -19,7 +20,7 @@ const base = {
   chassisNo: "",
   ic: "",
   ied: "",
-  serviceData: "",
+  serviceDate: "",
   kmDriven: "",
   ownerName: "",
   mobileNo: "",
@@ -32,12 +33,15 @@ const base = {
   city: "",
   pincode: "",
 };
+
 export const VehicleDataProvider = ({ children }) => {
   const [vehicleData, setvehicleData] = useState({ ...base });
 
   ////////////////////////////////////////////
   ////////////// FIRST PAGE //////////////////
   ////////////////////////////////////////////
+  //// change Type
+  const changeType = (e) => setvehicleData((data) => ({ ...data, type: e }));
 
   //// changeCompany
   const changeCompany = (e) =>
@@ -54,7 +58,7 @@ export const VehicleDataProvider = ({ children }) => {
 
   const changeMYear = (e) => setvehicleData((data) => ({ ...data, MYear: e }));
   //// changePVNo
-  const changePVNo = (e) => setvehicleData((data) => ({ ...data, PVNo: e }));
+  const changePVNo = (e) => setvehicleData((data) => ({ ...data, hasPVNo: e }));
   //// changePVNo1
   const changePVNo1 = (e) => setvehicleData((data) => ({ ...data, PVNo1: e }));
   //// changePVNo2
@@ -111,18 +115,18 @@ export const VehicleDataProvider = ({ children }) => {
   ////////////////////////////////////////////
 
   //// change Country
-  const changeCountry = (e) => setvehicleData((data) => ({ ...data, country: e }));
+  const changeCountry = (e) =>
+    setvehicleData((data) => ({ ...data, country: e }));
 
   //// change State
-  const changeState = (e) =>
-    setvehicleData((data) => ({ ...data, state: e }));
+  const changeState = (e) => setvehicleData((data) => ({ ...data, state: e }));
 
   //// change City
-  const changeCity = (e) =>
-    setvehicleData((data) => ({ ...data, city: e }));
+  const changeCity = (e) => setvehicleData((data) => ({ ...data, city: e }));
 
   //// change PinCode
-  const changePincode = (e) => setvehicleData((data) => ({ ...data, pincode: e }));
+  const changePincode = (e) =>
+    setvehicleData((data) => ({ ...data, pincode: e }));
 
   return (
     <VehicleDataContext.Provider
@@ -152,7 +156,7 @@ export const VehicleDataProvider = ({ children }) => {
         changeCountry,
         changeState,
         changeCity,
-        changePincode
+        changePincode,
       }}
     >
       {children}

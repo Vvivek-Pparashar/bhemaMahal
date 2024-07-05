@@ -22,7 +22,7 @@ const vehicleSchema = new mongoose.Schema({
     required: true,
   },
 
-  manufactureYear: {
+  MYear: {
     type: String,
     required: true,
   },
@@ -59,7 +59,7 @@ const vehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  name: {
+  ownerName: {
     type: String,
     required: true,
   },
@@ -94,6 +94,12 @@ const vehicleSchema = new mongoose.Schema({
   pincode: {
     type: String,
     required: true,
+  },
+
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    require: true,
   },
 
   createdAt: {

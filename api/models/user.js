@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   registeredVehicle: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "VehicleDetail",
+      ref: "Vehicle",
     },
   ],
 
