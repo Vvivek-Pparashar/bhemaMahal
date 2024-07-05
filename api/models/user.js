@@ -9,6 +9,13 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   profilePicture: { type: String, default: "" },
   joindDate: { type: Date, default: Date.now },
+  registeredVehicle: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "VehicleDetail",
+    },
+  ],
+
   DOB: { type: Date, require: true },
   mobileNo: { type: Number, require: true },
   username: { type: String, require: true },

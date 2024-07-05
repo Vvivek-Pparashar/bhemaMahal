@@ -13,7 +13,7 @@ const jwt = require("jsonwebtoken");
 
 mongoose
   .connect(
-    "mongodb+srv://vivek:xJei3fTripkEhWEh@alldata.currj2j.mongodb.net/test",
+    "mongodb+srv://vivek:xJei3fTripkEhWEh@alldata.currj2j.mongodb.net/org",
     {}
   )
   .then(() => {

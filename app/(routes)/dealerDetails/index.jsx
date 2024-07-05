@@ -18,13 +18,14 @@ const index = () => {
 
         for (let i = 0; i < count; i++) {
           let temp = response.data[i];
+          let date = new Date(temp.DOB);
           data.push([
             i + 1,
             temp.name,
-            0,
+            temp.registeredVehicle.length,
             temp.mobileNo,
             temp.email,
-            temp.DOB.toLocaleString().split(",")[0],
+            date.toLocaleString().split(",")[0],
             temp.admin ? "Onwer" : "Dealer",
             temp.city,
             temp.state,
@@ -48,7 +49,7 @@ const index = () => {
       "MobileNo.",
       "Email",
       "DOB",
-      "Access Dealer",
+      "Access",
       "City",
       "State",
     ],
