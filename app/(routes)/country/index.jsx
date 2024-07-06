@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
+  Alert,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -13,6 +14,7 @@ import axios from "axios";
 import { router } from "expo-router";
 import { VehicleDataContext } from "../../../context/newVehicle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { VehicleCountryContext } from "../../../context/vehicleCountry";
 
 const App = () => {
   const {
@@ -24,38 +26,40 @@ const App = () => {
     changePincode,
   } = useContext(VehicleDataContext);
 
+  const { vehicleCountry, changeStateValueLabel, changeCityValueLabel } =
+    useContext(VehicleCountryContext);
+
   const BASE_URL = "https://api.countrystatecity.in/v1";
   const API_KEY = "NHhvOEcyWk50N2Vna3VFTE00bFp3MjFKR0ZEOUhkZlg4RTk1MlJlaA==";
 
-  const [stateData, setStateData] = useState([]);
-  const [cityData, setCityData] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
-    var config = {
-      method: "get",
-      url: `${BASE_URL}/countries/IN/states`,
-      headers: {
-        "X-CSCAPI-KEY": API_KEY,
-      },
-    };
+    if (vehicleCountry.stateValueLabel == "") {
+      var config = {
+        method: "get",
+        url: `${BASE_URL}/countries/IN/states`,
+        headers: {
+          "X-CSCAPI-KEY": API_KEY,
+        },
+      };
 
-    axios(config)
-      .then(function (response) {
-        var count = Object.keys(response.data).length;
-        let stateArray = [];
-        for (var i = 0; i < count; i++) {
-          stateArray.push({
-            value: response.data[i].iso2,
-            label: response.data[i].name,
-          });
-        }
-        setStateData(stateArray);
-        if (vehicleData.cityValue) handleCity(vehicleData.stateValue);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      axios(config)
+        .then(function (response) {
+          var count = Object.keys(response.data).length;
+          let stateArray = [];
+          for (var i = 0; i < count; i++) {
+            stateArray.push({
+              value: response.data[i].iso2,
+              label: response.data[i].name,
+            });
+          }
+          changeStateValueLabel(stateArray);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   }, []);
 
   const handleCity = (stateCode) => {
@@ -77,7 +81,7 @@ const App = () => {
             label: response.data[i].name,
           });
         }
-        setCityData(cityArray);
+        changeCityValueLabel(cityArray);
       })
       .catch(function (error) {
         console.log(error);
@@ -128,7 +132,7 @@ const App = () => {
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
               iconStyle={styles.iconStyle}
-              data={stateData}
+              data={vehicleCountry.stateValueLabel}
               search
               maxHeight={300}
               labelField="label"
@@ -153,7 +157,7 @@ const App = () => {
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
               iconStyle={styles.iconStyle}
-              data={cityData}
+              data={vehicleCountry.cityValueLabel}
               search
               maxHeight={300}
               labelField="label"
@@ -194,9 +198,6 @@ const App = () => {
                   flex: 1,
                 }}
                 onPress={() => {
-                  console.log(
-                    `You have selected\nCountry: ${vehicleData.country}\nState: ${vehicleData.state}\nCity: ${vehicleData.city}`
-                  );
                   router.replace("owner");
                 }}
               >

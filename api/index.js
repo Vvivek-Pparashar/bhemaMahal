@@ -28,7 +28,7 @@ app.listen(port, () => {
 
 const User = require("./models/user");
 // const Post = require("./models/post");
-const Vehicle = require('./models/vehicle')
+const Vehicle = require("./models/vehicle");
 
 app.post("/register", async (req, res) => {
   console.log("here");
@@ -101,5 +101,70 @@ app.get("/get-Dealers", async (req, res) => {
     res
       .status(500)
       .json({ message: "An error occurred while getting the posts" });
+  }
+});
+
+app.post("/add-vehicle", async (req, res) => {
+  console.log("here");
+  try {
+    const {
+      type,
+      company,
+      modal,
+      variant,
+      MYear,
+      hasPVNo,
+      PVNo,
+      engineNo,
+      chassisNo,
+      ic,
+      ied,
+      serviceDate,
+      kmDriven,
+      ownerName,
+      mobileNo,
+      DOB,
+      aadharNo,
+      hasPAN,
+      PAN,
+      state,
+      city,
+      pincode,
+    } = req.body;
+
+    const newVehicle = new Vehicle({
+      type,
+      company,
+      modal,
+      variant,
+      MYear,
+      hasPVNo,
+      PVNo,
+      engineNo,
+      chassisNo,
+      ic,
+      ied,
+      serviceDate,
+      kmDriven,
+      ownerName,
+      mobileNo,
+      DOB,
+      aadharNo,
+      hasPAN,
+      PAN,
+      state,
+      city,
+      pincode,
+    });
+
+    //save the  user to the database
+    // await newVehicle.save();
+
+    console.log(req.body);
+
+    res.status(200).json({ message: "Registration successful" });
+  } catch (error) {
+    console.log("error registering user", error);
+    res.status(500).json({ message: "error registering user" });
   }
 });
