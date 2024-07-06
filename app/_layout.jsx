@@ -4,6 +4,7 @@ import { UserDataProvider } from "../context/userContext";
 import { Stack } from "expo-router";
 import { DealerDetailProvider } from "../context/dealerDetail";
 import { VehicleCountryProvider } from "../context/vehicleCountry";
+import { AllVehicleProvider } from "../context/allVehicle";
 
 const logo = require("../assets/images/logo.png");
 
@@ -31,78 +32,80 @@ export default function RootLayout() {
       <UserDataProvider>
         <DealerDetailProvider>
           <VehicleCountryProvider>
-            <Stack>
-              <Stack.Screen name="index" />
-              <Stack.Screen
-                name="(routes)/signIn/index"
-                options={{
-                  headerBackVisible: false,
-                  headerShown: false,
+            <AllVehicleProvider>
+              <Stack>
+                <Stack.Screen name="index" />
+                <Stack.Screen
+                  name="(routes)/signIn/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerShown: false,
 
-                  headerTitle: (props) => <LogoTitle {...props} />,
-                }}
-              />
-              <Stack.Screen
-                name="(routes)/add/index"
-                options={{
-                  headerBackVisible: false,
-                  headerTitle: (props) => <LogoTitle {...props} />,
-                }}
-              />
-              <Stack.Screen
-                name="(routes)/country/index"
-                options={{
-                  headerBackVisible: false,
-                  headerTitle: (props) => <LogoTitle {...props} />,
-                }}
-              />
-              <Stack.Screen
-                name="(routes)/owner/index"
-                options={{
-                  headerBackVisible: false,
-                  headerTitle: (props) => <LogoTitle {...props} />,
-                }}
-              />
-              <Stack.Screen
-                name="(routes)/vehicle/index"
-                options={{
-                  headerBackVisible: false,
-                  headerTitle: (props) => <LogoTitle {...props} />,
-                }}
-              />
-              <Stack.Screen
-                name="(routes)/update/index"
-                options={{
-                  headerBackVisible: false,
-                  headerTitle: (props) => <LogoTitle {...props} />,
-                }}
-              />
-              <Stack.Screen
-                name="(routes)/addDealer/index"
-                options={{
-                  headerBackVisible: false,
-                  headerTitle: (props) => <LogoTitle {...props} />,
-                }}
-              />
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="(routes)/add/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="(routes)/country/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="(routes)/owner/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="(routes)/vehicle/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="(routes)/update/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="(routes)/addDealer/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
 
-              <Stack.Screen
-                name="(routes)/dealerDetails/index"
-                options={{
-                  headerBackVisible: false,
-                  headerTitle: (props) => <LogoTitle {...props} />,
-                }}
-              />
+                <Stack.Screen
+                  name="(routes)/dealerDetails/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
 
-              <Stack.Screen
-                name="(routes)/search/index"
-                options={{
-                  headerBackVisible: false,
-                  headerTitle: (props) => <LogoTitle {...props} />,
-                }}
-              />
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
+                <Stack.Screen
+                  name="(routes)/search/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="+not-found" />
+              </Stack>
+            </AllVehicleProvider>
           </VehicleCountryProvider>
         </DealerDetailProvider>
       </UserDataProvider>

@@ -4,9 +4,13 @@ import { LinearGradient } from "expo-linear-gradient";
 const staticImage = require("../../assets/images/profile.png");
 import { UserDataContext } from "../../context/userContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { router } from "expo-router";
+import { useNavigation } from "expo-router";
+import { CommonActions } from "@react-navigation/native";
+import { useRouter } from "expo-router";
 
 const profile = () => {
+  const navigation = useNavigation();
+  const router = useRouter();
   const { userData, changeUserDataNull } = useContext(UserDataContext);
 
   return (
@@ -42,7 +46,17 @@ const profile = () => {
         onPress={() => {
           AsyncStorage.clear();
           changeUserDataNull();
-          router.replace("signIn");
+          // navigation.dispatch(resetAction);
+          // navigation;
+          // router.replace("signIn"/);
+          // router.dismissAll();
+
+          // navigation.dispatch(resetAction);
+          // navigation.reset();
+          // router.replace("signIn")
+          // navigation.navigate("signIn");
+
+          router.replace("/signIn");
         }}
       />
     </View>

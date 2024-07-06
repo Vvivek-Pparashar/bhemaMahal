@@ -92,9 +92,7 @@ app.post("/login", async (req, res) => {
 
 app.get("/get-Dealers", async (req, res) => {
   try {
-    const users = await User.find()
-      // .populate("user", "name")
-      .sort({ createdAt: -1 });
+    const users = await User.find().sort({ createdAt: -1 });
 
     res.status(200).json(users);
   } catch (error) {
@@ -173,5 +171,17 @@ app.post("/add-vehicle", async (req, res) => {
   } catch (error) {
     console.log("error registering user", error);
     res.status(500).json({ message: "error registering user" });
+  }
+});
+
+app.get("/all-vehicles", async (req, res) => {
+  try {
+    const allVehicleDatabase = await Vehicle.find().sort({ createdAt: -1 });
+
+    res.status(200).json(allVehicleDatabase);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "An error occurred while getting the posts" });
   }
 });
