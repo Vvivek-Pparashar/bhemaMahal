@@ -114,7 +114,10 @@ app.post("/add-vehicle", async (req, res) => {
       variant,
       MYear,
       hasPVNo,
-      PVNo,
+      PVNo1,
+      PVNo2,
+      PVNo3,
+      PVNo4,
       engineNo,
       chassisNo,
       ic,
@@ -130,7 +133,10 @@ app.post("/add-vehicle", async (req, res) => {
       state,
       city,
       pincode,
+      createdBY
     } = req.body;
+
+    const PVNo = `${PVNo1}-${PVNo2}${PVNo3}-${PVNo4}`
 
     const newVehicle = new Vehicle({
       type,
@@ -151,14 +157,16 @@ app.post("/add-vehicle", async (req, res) => {
       DOB,
       aadharNo,
       hasPAN,
-      PAN,
       state,
       city,
       pincode,
+      createdBY  
     });
 
+    // newVehicle.dealerId = createdBY;
+
     //save the  user to the database
-    // await newVehicle.save();
+    await newVehicle.save();
 
     console.log(req.body);
 

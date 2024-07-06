@@ -22,7 +22,7 @@ const vehicleSchema = new mongoose.Schema({
   },
 
   MYear: {
-    type: String,
+    type: Number,
     required: true,
   },
 
@@ -33,6 +33,7 @@ const vehicleSchema = new mongoose.Schema({
 
   PVNo: {
     type: String,
+    default: "",
   },
   engineNo: {
     type: String,
@@ -47,15 +48,15 @@ const vehicleSchema = new mongoose.Schema({
     required: true,
   },
   ied: {
-    type: String,
+    type: Date,
     required: true,
   },
   serviceDate: {
-    type: String,
+    type: Date,
     required: true,
   },
   kmDriven: {
-    type: String,
+    type: Number,
     required: true,
   },
   ownerName: {
@@ -75,12 +76,13 @@ const vehicleSchema = new mongoose.Schema({
     required: true,
   },
   hasPAN: {
-    type: String,
+    type: Boolean,
     required: true,
   },
   PAN: {
     type: String,
-    required: true,
+    // required: true,
+    default: "",
   },
   state: {
     type: String,
@@ -90,15 +92,15 @@ const vehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  createdBy: {
+    type: String,
+    require: true,
+    default :"maxiiiiiii"
+  },
   pincode: {
     type: String,
     required: true,
-  },
-
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    require: true,
   },
 
   createdAt: {

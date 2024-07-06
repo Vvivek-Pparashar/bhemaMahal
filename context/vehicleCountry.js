@@ -6,7 +6,7 @@ export const VehicleCountryContext = createContext();
 
 // Create a provider component
 
-const base = { stateValueLabel: "", cityValueLabel: "" };
+const base = { stateValueLabel: [], cityValueLabel: [] };
 export const VehicleCountryProvider = ({ children }) => {
   const [vehicleCountry, setVehicleCountry] = useState({ ...base });
 

@@ -35,7 +35,7 @@ const App = () => {
   const [isFocus, setIsFocus] = useState(false);
 
   useEffect(() => {
-    if (vehicleCountry.stateValueLabel == "") {
+    if (vehicleCountry.stateValueLabel.length == 0) {
       var config = {
         method: "get",
         url: `${BASE_URL}/countries/IN/states`,
@@ -97,7 +97,15 @@ const App = () => {
         }${vehicleData.pincode ? "" : "\nPinCode"}`
       );
     } else {
-      router.replace("(tabs)/home");
+      axios
+        .post("http://192.168.29.251:3000/add-vehicle", vehicleData)
+        .then((response) => {
+          // changeSetToNull();
+          router.replace("home");
+        })
+        .catch((error) => {
+          console.log("error creating post", error);
+        });
     }
   };
 

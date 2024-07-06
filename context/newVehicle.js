@@ -34,6 +34,7 @@ const base = {
   cityValue: "",
   stateValue: "",
   pincode: "",
+  createdBy : "",
 };
 
 export const VehicleDataProvider = ({ children }) => {
@@ -138,6 +139,10 @@ export const VehicleDataProvider = ({ children }) => {
   const changePincode = (e) =>
     setvehicleData((data) => ({ ...data, pincode: e }));
 
+    //// change createdBy
+    const changeCreatedBy = (e) =>
+      setvehicleData((data) => ({ ...data, createdBy: e }));
+
   return (
     <VehicleDataContext.Provider
       value={{
@@ -170,6 +175,7 @@ export const VehicleDataProvider = ({ children }) => {
         changeCityValue,
         changeStateValue,
         changePincode,
+        changeCreatedBy
       }}
     >
       {children}

@@ -13,10 +13,18 @@ import RNPickerSelect from "react-native-picker-select";
 import { router } from "expo-router";
 import { VehicleDataContext } from "../../../context/newVehicle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { UserDataContext } from "../../../context/userContext";
 
 const index = () => {
-  const { vehicleData, changeType, changeCompany, changeModal, changeVariant } =
-    useContext(VehicleDataContext);
+  const {
+    vehicleData,
+    changeType,
+    changeCompany,
+    changeModal,
+    changeVariant,
+    changeCreatedBy,
+  } = useContext(VehicleDataContext);
+  const { userData } = useContext(UserDataContext);
 
   const handleClick = () => {
     if (
@@ -34,6 +42,7 @@ const index = () => {
         }`
       );
     } else {
+      changeCreatedBy(userData._id);
       router.replace("vehicle");
     }
   };
