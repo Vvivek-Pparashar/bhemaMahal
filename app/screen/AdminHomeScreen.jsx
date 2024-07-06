@@ -35,7 +35,7 @@ const AdminHomeScreen = () => {
       <HomeLinearGradPress
         text_prop={"Search A Vehicle"}
         icon_prop={"search"}
-        link_prop={"add"}
+        link_prop={"search"}
       />
 
       <HomeLinearGradPress
