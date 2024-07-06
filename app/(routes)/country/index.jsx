@@ -101,7 +101,8 @@ const App = () => {
         .post("http://192.168.29.251:3000/add-vehicle", vehicleData)
         .then((response) => {
           // changeSetToNull();
-          router.replace("home");
+          console.log(vehicleData)
+          // router.replace("home");
         })
         .catch((error) => {
           console.log("error creating post", error);

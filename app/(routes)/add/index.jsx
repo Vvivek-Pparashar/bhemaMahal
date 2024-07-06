@@ -43,7 +43,9 @@ const index = () => {
       );
     } else {
       changeCreatedBy(userData._id);
+      console.log(userData._id)
       router.replace("vehicle");
+      console.log(userData)
     }
   };
 

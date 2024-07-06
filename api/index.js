@@ -133,10 +133,12 @@ app.post("/add-vehicle", async (req, res) => {
       state,
       city,
       pincode,
-      createdBY
+      createdBy,
     } = req.body;
 
-    const PVNo = `${PVNo1}-${PVNo2}${PVNo3}-${PVNo4}`
+    const PVNo = hasPVNo ? `${PVNo1}-${PVNo2}${PVNo3}-${PVNo4}` : "";
+
+    console.log(req.body);
 
     const newVehicle = new Vehicle({
       type,
@@ -157,18 +159,15 @@ app.post("/add-vehicle", async (req, res) => {
       DOB,
       aadharNo,
       hasPAN,
+      PAN,
       state,
       city,
       pincode,
-      createdBY  
+      createdBy,
     });
-
-    // newVehicle.dealerId = createdBY;
 
     //save the  user to the database
     await newVehicle.save();
-
-    console.log(req.body);
 
     res.status(200).json({ message: "Registration successful" });
   } catch (error) {
