@@ -110,6 +110,13 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
+                  name="(routes)/searchByOwnerName/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
                   name="(routes)/searchByCompany/index"
                   options={{
                     headerBackVisible: false,

@@ -24,9 +24,9 @@ const index = () => {
             "http://192.168.29.251:3000/all-vehicles"
           );
 
-          console.log("fdfsdf")
+          console.log("fdfsdf");
           changeAllVehicle(response.data);
-          console.log("allData", allVehicle)
+          console.log("allData", allVehicle);
         } catch (error) {
           console.log("error fetching posts", error);
         }
@@ -35,8 +35,7 @@ const index = () => {
       functio();
     }
 
-    console.log(allVehicle)
-
+    console.log(allVehicle);
   }, []);
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -44,6 +43,11 @@ const index = () => {
         text_prop={"Search By Vehicle No."}
         icon_prop={"manage-search"}
         link_prop={"searchByVehicleNo"}
+      />
+      <SearchLinearGradient
+        text_prop={"Search By Owner Name."}
+        icon_prop={"saved-search"}
+        link_prop={"searchByOwnerName"}
       />
       <SearchLinearGradient
         text_prop={"By Insurance Company"}
