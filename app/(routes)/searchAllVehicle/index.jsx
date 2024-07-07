@@ -19,6 +19,7 @@ const index = () => {
       temp.push([
         i + 1,
         new Date(row.createdAt).toLocaleString().split(",")[0],
+        row.createdBy.name,
         row.type,
         row.modal,
         row.company,
@@ -39,7 +40,6 @@ const index = () => {
         row.state,
         row.city,
         row.pincode,
-        row.createdBy,
       ]);
     }
 
@@ -50,6 +50,7 @@ const index = () => {
     tableHead: [
       "Sr No.",
       "Date Of Regestration",
+      "Dealer",
       "Type",
       "Modal",
       "Company",
@@ -70,11 +71,10 @@ const index = () => {
       "State",
       "City",
       "Pincode",
-      "Dealer",
     ],
     widthArr: [
-      70, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
-      200, 200, 200, 200, 200, 200, 200,
+      70, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+      200, 200, 200, 200, 200, 200, 200, 200,
     ],
   };
   return (

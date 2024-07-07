@@ -176,7 +176,9 @@ app.post("/add-vehicle", async (req, res) => {
 
 app.get("/all-vehicles", async (req, res) => {
   try {
-    const allVehicleDatabase = await Vehicle.find().sort({ createdAt: -1 });
+    const allVehicleDatabase = await Vehicle.find()
+      .populate("createdBy", "name")
+      .sort({ createdAt: -1 });
 
     res.status(200).json(allVehicleDatabase);
   } catch (error) {

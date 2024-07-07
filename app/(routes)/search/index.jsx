@@ -27,7 +27,6 @@ const index = () => {
           console.log("fdfsdf")
           changeAllVehicle(response.data);
           console.log("allData", allVehicle)
-          //console.log("response", response.data)
         } catch (error) {
           console.log("error fetching posts", error);
         }

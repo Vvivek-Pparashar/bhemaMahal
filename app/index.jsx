@@ -5,7 +5,7 @@ import { Redirect } from "expo-router";
 const index = () => {
   return (
     <View>
-      {/* <Redirect href={"search"} /> */}
+      {/* <Redirect href={"update"} /> */}
       <Redirect href={"signIn"} />
     </View>
   );

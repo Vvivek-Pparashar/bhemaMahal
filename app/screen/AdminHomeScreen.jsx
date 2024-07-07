@@ -39,9 +39,9 @@ const AdminHomeScreen = () => {
       />
 
       <HomeLinearGradPress
-        text_prop={"Update service Date"}
+        text_prop={"Update Vehicle Data"}
         icon_prop={"update"}
-        link_prop={"add"}
+        link_prop={"update"}
       />
     </ScrollView>
   );
