@@ -43,7 +43,7 @@ const index = () => {
       );
     } else {
       axios
-        .post("http://192.168.29.251:3000/register", dealerDetail)
+        .post("https://bima-mahalserver.vercel.app/register", dealerDetail)
         .then((response) => {
           changeSetToNull();
           router.replace("home");

@@ -9,7 +9,7 @@ const index = () => {
     const functio = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.29.251:3000/get-Dealers"
+          "https://bima-mahalserver.vercel.app/get-Dealers"
         );
         let data = [];
         let count = response.data.length;

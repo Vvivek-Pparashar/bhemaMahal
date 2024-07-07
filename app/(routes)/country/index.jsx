@@ -98,7 +98,7 @@ const App = () => {
       );
     } else {
       axios
-        .post("http://192.168.29.251:3000/add-vehicle", vehicleData)
+        .post("https://bima-mahalserver.vercel.app/add-vehicle", vehicleData)
         .then((response) => {
           // changeSetToNull();
           console.log(vehicleData)

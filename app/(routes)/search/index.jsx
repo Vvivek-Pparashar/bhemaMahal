@@ -18,7 +18,7 @@ const index = () => {
       const functio = async () => {
         try {
           const response = await axios.get(
-            "http://192.168.29.251:3000/all-vehicles"
+            "https://bima-mahalserver.vercel.app/all-vehicles"
           );
 
           console.log("fdfsdf");
