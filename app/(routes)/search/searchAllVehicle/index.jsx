@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Table, Row, Rows } from "react-native-table-component";
-import { AllVehicleContext } from "../../../context/allVehicle";
+import { AllVehicleContext } from "../../../../context/allVehicle";
 
 const index = () => {
   const { allVehicle } = useContext(AllVehicleContext);

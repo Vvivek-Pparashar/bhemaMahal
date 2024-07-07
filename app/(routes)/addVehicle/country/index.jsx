@@ -12,9 +12,9 @@ import {
 import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
 import { router } from "expo-router";
-import { VehicleDataContext } from "../../../context/newVehicle";
+import { VehicleDataContext } from "../../../../context/newVehicle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { VehicleCountryContext } from "../../../context/vehicleCountry";
+import { VehicleCountryContext } from "../../../../context/vehicleCountry";
 
 const App = () => {
   const {

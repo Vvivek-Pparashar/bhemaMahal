@@ -1,14 +1,12 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Table, Row, Rows } from "react-native-table-component";
-import { AllVehicleContext } from "../../../context/allVehicle";
-import insuranceList from "../../../assets/data/insuranceList";
-import { Dropdown } from "react-native-element-dropdown";
+import { AllVehicleContext } from "../../../../context/allVehicle";
 
 const index = () => {
   const { allVehicle } = useContext(AllVehicleContext);
   const [data, setData] = useState([]);
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     let count = allVehicle.length;
@@ -17,8 +15,8 @@ const index = () => {
 
     for (let i = 0; i < count; i++) {
       let row = allVehicle[i];
-      
-      if (value == row.ic) {
+
+      if (value.trim() == row.ownerName.trim()) {
         temp.push([
           i + 1,
           new Date(row.createdAt).toLocaleString().split(",")[0],
@@ -90,24 +88,14 @@ const index = () => {
           fontWeight: "condensedBold",
         }}
       >
-        Insurance Company :-
+        Owner Name :-
       </Text>
 
-      <Dropdown
-        style={[styles.dropdown]}
-        placeholderStyle={styles.placeholderStyle}
-        selectedTextStyle={styles.selectedTextStyle}
-        inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="value"
-        placeholder={"Insurance Company"}
-        searchPlaceholder="Search..."
+      <TextInput
+        style={styles.input}
         value={value}
-        data={insuranceList}
-        onChange={(item) => setValue(item.value)}
+        onChangeText={(text) => setValue(text)}
+        placeholder="Owner Name"
       />
 
       {data.length == 0 ? (
@@ -145,27 +133,11 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: "#fff" },
   head: { height: 40, backgroundColor: "#f1f8ff" },
   text: { margin: 6 },
-  dropdown: {
-    height: 50,
-    borderColor: "gray",
-    borderWidth: 0.5,
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
     borderRadius: 5,
-    paddingHorizontal: 8,
     marginBottom: 20,
-  },
-
-  placeholderStyle: {
-    fontSize: 16,
-  },
-  selectedTextStyle: {
-    fontSize: 16,
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
   },
 });

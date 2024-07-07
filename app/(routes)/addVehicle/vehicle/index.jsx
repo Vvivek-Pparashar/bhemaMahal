@@ -13,9 +13,9 @@ import { router } from "expo-router";
 import CheckBox from "react-native-check-box";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Dropdown } from "react-native-element-dropdown";
-import { VehicleDataContext } from "../../../context/newVehicle";
+import { VehicleDataContext } from "../../../../context/newVehicle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import insuranceList from "../../../assets/data/insuranceList";
+import insuranceList from "../../../../assets/data/insuranceList";
 
 const index = () => {
   const [dateED, setDateED] = useState(new Date());
