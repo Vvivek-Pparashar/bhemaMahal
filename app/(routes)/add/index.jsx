@@ -11,9 +11,9 @@ import {
 import React, { useContext } from "react";
 import RNPickerSelect from "react-native-picker-select";
 import { router } from "expo-router";
-import { VehicleDataContext } from "../../../../context/newVehicle";
+import { VehicleDataContext } from "../../../context/newVehicle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { UserDataContext } from "../../../../context/userContext";
+import { UserDataContext } from "../../../context/userContext";
 
 const index = () => {
   const {

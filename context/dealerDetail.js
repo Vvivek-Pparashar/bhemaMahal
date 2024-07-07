@@ -1,4 +1,6 @@
+// this context is used for storing the dealer details while we are adding new dealer.
 // DealerDetail Context.js
+
 import React, { createContext, useState } from "react";
 
 // Create a context
@@ -66,8 +68,8 @@ export const DealerDetailProvider = ({ children }) => {
     setDealerDetail((data) => ({ ...data, admin: e }));
 
   //// Set To Null
-
   const changeSetToNull = () => setDealerDetail({ ...base });
+
 
   return (
     <DealerDetailContext.Provider

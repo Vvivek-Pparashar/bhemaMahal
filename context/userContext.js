@@ -1,3 +1,5 @@
+// This context is used for storing the user data so that we dont have to get it from async storage..
+
 // UserData Context.js
 import React, { createContext, useState } from "react";
 

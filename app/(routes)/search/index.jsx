@@ -15,9 +15,6 @@ const dp = (size) => {
 const index = () => {
   const { allVehicle, changeAllVehicle } = useContext(AllVehicleContext);
   useEffect(() => {
-    if (allVehicle.length == 0) {
-      console.log("hlo");
-
       const functio = async () => {
         try {
           const response = await axios.get(
@@ -33,9 +30,6 @@ const index = () => {
       };
 
       functio();
-    }
-
-    console.log(allVehicle);
   }, []);
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -77,6 +71,7 @@ const styles = StyleSheet.create({
     gap: wp("5%"),
     backgroundColor: "white",
     minHeight: "100%",
+    // flex:1,
     paddingTop: dp(70),
   },
 });

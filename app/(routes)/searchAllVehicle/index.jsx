@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Table, Row, Rows } from "react-native-table-component";
-import { AllVehicleContext } from "../../../../context/allVehicle";
+import { AllVehicleContext } from "../../../context/allVehicle";
 
 const index = () => {
   const { allVehicle } = useContext(AllVehicleContext);
@@ -85,24 +85,25 @@ const index = () => {
           fontWeight: "condensedBold",
         }}
       >
-        Search By Dealer Name :-
+        All Vehicles :-
       </Text>
-
       <ScrollView horizontal={true}>
         <View>
-          <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
-            <Row
-              data={state.tableHead}
-              style={styles.head}
-              widthArr={state.widthArr}
-              textStyle={styles.text}
-            />
-            <Rows
-              data={data}
-              widthArr={state.widthArr}
-              textStyle={styles.text}
-            />
-          </Table>
+          <ScrollView>
+            <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
+              <Row
+                data={state.tableHead}
+                style={styles.head}
+                widthArr={state.widthArr}
+                textStyle={styles.text}
+              />
+              <Rows
+                data={data}
+                widthArr={state.widthArr}
+                textStyle={styles.text}
+              />
+            </Table>
+          </ScrollView>
         </View>
       </ScrollView>
     </View>

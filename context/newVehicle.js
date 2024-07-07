@@ -1,3 +1,4 @@
+//This context is used for storing all vehicle data so that there is no need to use redux.
 // vehicleData Context.js
 import React, { createContext, useState } from "react";
 

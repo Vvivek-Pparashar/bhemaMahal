@@ -1,22 +1,27 @@
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { Table, Row, Rows } from "react-native-table-component";
-import { AllVehicleContext } from "../../../../context/allVehicle";
+import { Table, Col, Cols, TableWrapper } from "react-native-table-component";
+import { AllVehicleContext } from "../../../context/allVehicle";
 
 const index = () => {
   const { allVehicle } = useContext(AllVehicleContext);
   const [data, setData] = useState([]);
-  const [value, setValue] = useState("");
+  const [one1, setOne1] = useState("");
+  const [one2, setOne2] = useState("");
+  const [one3, setOne3] = useState("");
+  const [one4, setOne4] = useState("");
 
   useEffect(() => {
     let count = allVehicle.length;
 
     const temp = [];
 
+    let PVNo = `${one1}-${one2}${one3}-${one4}`;
+
     for (let i = 0; i < count; i++) {
       let row = allVehicle[i];
 
-      if (value.trim() == row.ownerName.trim()) {
+      if (row.PVNo == PVNo) {
         temp.push([
           i + 1,
           new Date(row.createdAt).toLocaleString().split(",")[0],
@@ -46,7 +51,7 @@ const index = () => {
     }
 
     setData(temp);
-  }, [value]);
+  }, [one1, one2, one3, one4]);
 
   const state = {
     tableHead: [
@@ -88,36 +93,63 @@ const index = () => {
           fontWeight: "condensedBold",
         }}
       >
-        Owner Name :-
+        Search By Vehicle Number :-
       </Text>
 
-      <TextInput
-        style={styles.input}
-        value={value}
-        onChangeText={(text) => setValue(text)}
-        placeholder="Owner Name"
-      />
+      <View style={{ display: "flex", flexDirection: "row", gap: 20 }}>
+        <TextInput
+          style={{ ...styles.input, flex: 2 }}
+          placeholder="HR"
+          maxLength={2}
+          value={one1}
+          onChangeText={(text) => setOne1(text)}
+        />
+        <TextInput
+          style={{ ...styles.input, flex: 2 }}
+          placeholder="31"
+          maxLength={2}
+          keyboardType="numeric"
+          value={one2}
+          onChangeText={(text) => setOne2(text)}
+        />
+        <TextInput
+          style={{ ...styles.input, flex: 1 }}
+          placeholder="H"
+          maxLength={1}
+          value={one3}
+          onChangeText={(text) => setOne3(text)}
+        />
+        <TextInput
+          style={{ ...styles.input, flex: 4 }}
+          placeholder="9641"
+          maxLength={4}
+          keyboardType="numeric"
+          value={one4}
+          onChangeText={(text) => setOne4(text)}
+        />
+      </View>
 
       {data.length == 0 ? (
         <Text style={{ fontSize: 20, fontWeight: "bold" }}>
           Nothing Found!!!
         </Text>
       ) : (
-        <ScrollView horizontal={true}>
+        <ScrollView>
           <View>
-            <ScrollView>
+            <ScrollView horizontal={true}>
               <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
-                <Row
-                  data={state.tableHead}
-                  style={styles.head}
-                  widthArr={state.widthArr}
-                  textStyle={styles.text}
-                />
-                <Rows
-                  data={data}
-                  widthArr={state.widthArr}
-                  textStyle={styles.text}
-                />
+                <TableWrapper style={styles.wrapper}>
+                  <Col
+                    data={state.tableHead}
+                    style={styles.head}
+                    textStyle={styles.text}
+                  />
+                  <Cols
+                    data={data}
+                    style={styles.row}
+                    textStyle={styles.text}
+                  />
+                </TableWrapper>
               </Table>
             </ScrollView>
           </View>
@@ -130,9 +162,6 @@ const index = () => {
 export default index;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: "#fff" },
-  head: { height: 40, backgroundColor: "#f1f8ff" },
-  text: { margin: 6 },
   input: {
     borderWidth: 1,
     borderColor: "#ccc",
@@ -140,4 +169,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
   },
+
+  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: "#fff" },
+  tableBorder: { borderWidth: 1, borderColor: "#C1C0B9" },
+  wrapper: { flexDirection: "row" },
+  head: { height: 1250, backgroundColor: "#f1f8ff", width: 200 },
+  row: { height: 1250, width: 250 },
+  text: { margin: 6 },
 });

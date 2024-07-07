@@ -12,7 +12,7 @@ import React, { useContext, useState } from "react";
 import { router } from "expo-router";
 import CheckBox from "react-native-check-box";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { VehicleDataContext } from "../../../../context/newVehicle";
+import { VehicleDataContext } from "../../../context/newVehicle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const index = () => {

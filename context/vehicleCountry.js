@@ -1,3 +1,5 @@
+// This context is used to store the context of country in add vehicle, so that we dont have to fetch the api again and again, here the all label and values are store of state and cities.
+
 // VehicleCountry Context.js
 import React, { createContext, useState } from "react";
 
