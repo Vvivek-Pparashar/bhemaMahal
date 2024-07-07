@@ -102,6 +102,27 @@ export default function RootLayout() {
                     headerTitle: (props) => <LogoTitle {...props} />,
                   }}
                 />
+                <Stack.Screen
+                  name="(routes)/searchByVehicleNo/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="(routes)/searchByCompany/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
+                  name="(routes)/searchByDealer/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
 
                 <Stack.Screen
                   name="(routes)/searchAllVehicle/index"

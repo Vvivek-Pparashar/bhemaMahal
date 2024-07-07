@@ -85,8 +85,9 @@ const index = () => {
           fontWeight: "condensedBold",
         }}
       >
-        All Vehicles :-
+        Search By Dealer Name :-
       </Text>
+
       <ScrollView horizontal={true}>
         <View>
           <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>

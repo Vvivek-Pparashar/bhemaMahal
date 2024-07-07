@@ -23,7 +23,6 @@ const SearchLinearGradient = ({ text_prop, icon_prop, link_prop }) => {
   return (
     <View>
       <Pressable onPress={() => router.navigate(`${link_prop}`)}>
-        {/* background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%); */}
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}

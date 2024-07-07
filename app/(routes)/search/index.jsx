@@ -43,17 +43,17 @@ const index = () => {
       <SearchLinearGradient
         text_prop={"Search By Vehicle No."}
         icon_prop={"manage-search"}
-        link_prop={"addDealer"}
+        link_prop={"searchByVehicleNo"}
       />
       <SearchLinearGradient
         text_prop={"By Insurance Company"}
         icon_prop={"content-paste-search"}
-        link_prop={"addDealer"}
+        link_prop={"searchByCompany"}
       />
       <SearchLinearGradient
         text_prop={"Search By Dealer Name"}
         icon_prop={"person-search"}
-        link_prop={"addDealer"}
+        link_prop={"searchByDealer"}
       />
       <SearchLinearGradient
         text_prop={"All Vehicle"}
