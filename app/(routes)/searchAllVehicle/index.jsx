@@ -89,19 +89,21 @@ const index = () => {
       </Text>
       <ScrollView horizontal={true}>
         <View>
-          <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
-            <Row
-              data={state.tableHead}
-              style={styles.head}
-              widthArr={state.widthArr}
-              textStyle={styles.text}
-            />
-            <Rows
-              data={data}
-              widthArr={state.widthArr}
-              textStyle={styles.text}
-            />
-          </Table>
+          <ScrollView>
+            <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
+              <Row
+                data={state.tableHead}
+                style={styles.head}
+                widthArr={state.widthArr}
+                textStyle={styles.text}
+              />
+              <Rows
+                data={data}
+                widthArr={state.widthArr}
+                textStyle={styles.text}
+              />
+            </Table>
+          </ScrollView>
         </View>
       </ScrollView>
     </View>

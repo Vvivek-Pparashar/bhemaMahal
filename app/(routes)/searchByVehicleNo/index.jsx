@@ -1,20 +1,6 @@
-import {
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Table,
-  Row,
-  Rows,
-  Col,
-  Cols,
-  TableWrapper,
-} from "react-native-table-component";
+import { Table, Col, Cols, TableWrapper } from "react-native-table-component";
 import { AllVehicleContext } from "../../../context/allVehicle";
 
 const index = () => {
@@ -144,7 +130,9 @@ const index = () => {
       </View>
 
       {data.length == 0 ? (
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Nothing Found!!!</Text>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+          Nothing Found!!!
+        </Text>
       ) : (
         <ScrollView>
           <View>
