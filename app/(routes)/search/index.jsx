@@ -59,7 +59,7 @@ const index = () => {
       <SearchLinearGradient
         text_prop={"All Vehicle"}
         icon_prop={"search"}
-        link_prop={"addDealer"}
+        link_prop={"searchAllVehicle"}
       />
     </ScrollView>
   );
