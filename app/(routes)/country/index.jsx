@@ -15,6 +15,7 @@ import { router } from "expo-router";
 import { VehicleDataContext } from "../../../context/newVehicle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { VehicleCountryContext } from "../../../context/vehicleCountry";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const App = () => {
   const {
@@ -24,6 +25,7 @@ const App = () => {
     changeCityValue,
     changeStateValue,
     changePincode,
+    changeSetToNull
   } = useContext(VehicleDataContext);
 
   const { vehicleCountry, changeStateValueLabel, changeCityValueLabel } =
@@ -33,6 +35,7 @@ const App = () => {
   const API_KEY = "NHhvOEcyWk50N2Vna3VFTE00bFp3MjFKR0ZEOUhkZlg4RTk1MlJlaA==";
 
   const [isFocus, setIsFocus] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (vehicleCountry.stateValueLabel.length == 0) {
@@ -44,6 +47,7 @@ const App = () => {
         },
       };
 
+      setLoading(true);
       axios(config)
         .then(function (response) {
           var count = Object.keys(response.data).length;
@@ -55,9 +59,12 @@ const App = () => {
             });
           }
           changeStateValueLabel(stateArray);
+          setLoading(false);
         })
         .catch(function (error) {
           console.log(error);
+          setLoading(false);
+          Alert.alert("Error", "NetWork Problem");
         });
     }
   }, []);
@@ -71,6 +78,8 @@ const App = () => {
       },
     };
 
+    setLoading(true);
+
     axios(config)
       .then(function (response) {
         var count = Object.keys(response.data).length;
@@ -82,9 +91,12 @@ const App = () => {
           });
         }
         changeCityValueLabel(cityArray);
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
+        setLoading(false);
+        Alert.alert("Error", "NetWork Problem");
       });
   };
 
@@ -97,14 +109,18 @@ const App = () => {
         }${vehicleData.pincode ? "" : "\nPinCode"}`
       );
     } else {
+      setLoading(true);
       axios
         .post("https://bima-mahalserver.vercel.app/add-vehicle", vehicleData)
         .then((response) => {
           changeSetToNull();
+          setLoading(false);
           router.replace("home");
         })
         .catch((error) => {
           console.log("error creating post", error);
+          setLoading(false);
+          Alert.alert("Error", "NetWork Problem");
         });
     }
   };
@@ -113,6 +129,11 @@ const App = () => {
     <SafeAreaView
       style={{ padding: 20, backgroundColor: "white", minHeight: "100%" }}
     >
+      <Spinner
+        visible={loading}
+        textContent={"Loading..."}
+        textStyle={styles.spinnerTextStyle}
+      />
       <ScrollView>
         <KeyboardAwareScrollView>
           <Text

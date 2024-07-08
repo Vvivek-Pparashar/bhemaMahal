@@ -23,6 +23,7 @@ const index = () => {
     changeModal,
     changeVariant,
     changeCreatedBy,
+    changeSetToNull,
   } = useContext(VehicleDataContext);
   const { userData } = useContext(UserDataContext);
 
@@ -43,9 +44,9 @@ const index = () => {
       );
     } else {
       changeCreatedBy(userData._id);
-      console.log(userData._id)
+      console.log(userData._id);
       router.replace("vehicle");
-      console.log(userData)
+      console.log(userData);
     }
   };
 
@@ -132,6 +133,7 @@ const index = () => {
                   flex: 1,
                 }}
                 onPress={() => {
+                  changeSetToNull();
                   router.replace("(tabs)/home");
                 }}
               >
