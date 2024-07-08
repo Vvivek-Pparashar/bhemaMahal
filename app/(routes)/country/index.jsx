@@ -100,9 +100,8 @@ const App = () => {
       axios
         .post("https://bima-mahalserver.vercel.app/add-vehicle", vehicleData)
         .then((response) => {
-          // changeSetToNull();
-          console.log(vehicleData)
-          // router.replace("home");
+          changeSetToNull();
+          router.replace("home");
         })
         .catch((error) => {
           console.log("error creating post", error);

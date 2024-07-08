@@ -155,7 +155,7 @@ const index = () => {
                     placeholder="HR"
                     maxLength={2}
                     value={vehicleData.PVNo1}
-                    onChangeText={(text) => changePVNo1(text)}
+                    onChangeText={(text) => changePVNo1(text.toUpperCase())}
                   />
                   <TextInput
                     style={{ ...styles.input, flex: 2 }}
@@ -170,7 +170,7 @@ const index = () => {
                     placeholder="H"
                     maxLength={1}
                     value={vehicleData.PVNo3}
-                    onChangeText={(text) => changePVNo3(text)}
+                    onChangeText={(text) => changePVNo3(text.toUpperCase())}
                   />
                   <TextInput
                     style={{ ...styles.input, flex: 4 }}
@@ -190,7 +190,7 @@ const index = () => {
               placeholder="Engine number"
               maxLength={17}
               value={vehicleData.engineNo}
-              onChangeText={(text) => changeengineNo(text)}
+              onChangeText={(text) => changeengineNo(text.toUpperCase())}
             />
 
             <Text style={styles.label}>chassis number</Text>
@@ -199,7 +199,7 @@ const index = () => {
               placeholder="chassis number"
               maxLength={17}
               value={vehicleData.chassisNo}
-              onChangeText={(text) => changechassisNo(text)}
+              onChangeText={(text) => changechassisNo(text.toUpperCase())}
             />
 
             <Text style={styles.label}>Insurance Company</Text>

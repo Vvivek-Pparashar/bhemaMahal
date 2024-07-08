@@ -97,7 +97,7 @@ const index = () => {
               style={styles.input}
               placeholder="Enter Vehicle Company"
               value={vehicleData.company}
-              onChangeText={(text) => changeCompany(text)}
+              onChangeText={(text) => changeCompany(text.toUpperCase())}
             />
 
             <Text style={styles.label}>Modal</Text>
@@ -105,7 +105,7 @@ const index = () => {
               style={styles.input}
               placeholder="Enter Vehicle Modal"
               value={vehicleData.modal}
-              onChangeText={(text) => changeModal(text)}
+              onChangeText={(text) => changeModal(text.toUpperCase())}
             />
 
             <Text style={styles.label}>Variant</Text>
@@ -113,7 +113,7 @@ const index = () => {
               style={styles.input}
               placeholder="Enter Vehicle Variant"
               value={vehicleData.variant}
-              onChangeText={(text) => changeVariant(text)}
+              onChangeText={(text) => changeVariant(text.toUpperCase())}
             />
             <View
               style={{

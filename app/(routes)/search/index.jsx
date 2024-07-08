@@ -14,6 +14,8 @@ const dp = (size) => {
 
 const index = () => {
   const { allVehicle, changeAllVehicle } = useContext(AllVehicleContext);
+
+  
   useEffect(() => {
       const functio = async () => {
         try {

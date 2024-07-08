@@ -94,7 +94,7 @@ const index = () => {
       <TextInput
         style={styles.input}
         value={value}
-        onChangeText={(text) => setValue(text)}
+        onChangeText={(text) => setValue(text.toUpperCase())}
         placeholder="Owner Name"
       />
 

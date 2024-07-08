@@ -85,7 +85,7 @@ const index = () => {
               style={styles.input}
               placeholder="Enter your name"
               value={vehicleData.ownerName}
-              onChangeText={(text) => changeownerName(text)}
+              onChangeText={(text) => changeownerName(text.toUpperCase())}
             />
 
             <Text style={styles.label}>Mobile No.</Text>

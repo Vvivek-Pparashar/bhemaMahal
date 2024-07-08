@@ -8,6 +8,7 @@ const index = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    console.log(allVehicle)
     let count = allVehicle.length;
 
     const temp = [];
@@ -100,7 +101,7 @@ const index = () => {
               <Rows
                 data={data}
                 widthArr={state.widthArr}
-                textStyle={styles.text}
+                textStyle={{margin:6}}
               />
             </Table>
           </ScrollView>
