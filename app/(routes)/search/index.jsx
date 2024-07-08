@@ -45,6 +45,11 @@ const index = () => {
         textStyle={styles.spinnerTextStyle}
       />
       <SearchLinearGradient
+        text_prop={"Insurance Expiry Date."}
+        icon_prop={"date-range"}
+        link_prop={"searchByInsuranceDate"}
+      />
+      <SearchLinearGradient
         text_prop={"Search By Vehicle No."}
         icon_prop={"manage-search"}
         link_prop={"searchByVehicleNo"}

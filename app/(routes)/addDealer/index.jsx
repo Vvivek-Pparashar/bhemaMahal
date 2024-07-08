@@ -7,16 +7,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { router } from "expo-router";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import FirstComp from "../../screen/AddDealer/FirstComp";
 import SecondComp from "../../screen/AddDealer/SecondComp";
 import { DealerDetailContext } from "../../../context/dealerDetail";
+import Spinner from "react-native-loading-spinner-overlay";
 import axios from "axios";
 const index = () => {
   const { dealerDetail, changeSetToNull } = useContext(DealerDetailContext);
+  const [loading, setLoading] = useState(false);
 
   const onPressAddDealer = () => {
     if (
@@ -42,19 +44,28 @@ const index = () => {
         }  `
       );
     } else {
+      setLoading(true);
       axios
         .post("https://bima-mahalserver.vercel.app/register", dealerDetail)
         .then((response) => {
           changeSetToNull();
+          setLoading(false);
           router.replace("home");
         })
         .catch((error) => {
           console.log("error creating post", error);
+          setLoading(false);
+          Alert.alert("Error", "NetWork Problem");
         });
     }
   };
   return (
     <SafeAreaView style={{ backgroundColor: "white", minHeight: "100%" }}>
+      <Spinner
+        visible={loading}
+        textContent={"Loading..."}
+        textStyle={styles.spinnerTextStyle}
+      />
       <ScrollView>
         <KeyboardAwareScrollView style={{ padding: 20 }}>
           <Text
@@ -64,7 +75,7 @@ const index = () => {
               marginTop: 10,
               marginBottom: 30,
             }}
-          > 
+          >
             Dealer Details
           </Text>
           <View style={styles.container}>
@@ -138,5 +149,8 @@ export default index;
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
+  },
+  spinnerTextStyle: {
+    color: "#FFF",
   },
 });

@@ -103,6 +103,13 @@ export default function RootLayout() {
                   }}
                 />
                 <Stack.Screen
+                  name="(routes)/searchByInsuranceDate/index"
+                  options={{
+                    headerBackVisible: false,
+                    headerTitle: (props) => <LogoTitle {...props} />,
+                  }}
+                />
+                <Stack.Screen
                   name="(routes)/searchByVehicleNo/index"
                   options={{
                     headerBackVisible: false,
@@ -138,6 +145,7 @@ export default function RootLayout() {
                     headerTitle: (props) => <LogoTitle {...props} />,
                   }}
                 />
+
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                 <Stack.Screen name="+not-found" />
               </Stack>

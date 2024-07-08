@@ -22,7 +22,7 @@ const base = {
 
 // Create a provider component
 export const DealerDetailProvider = ({ children }) => {
-  const [dealerDetail, setDealerDetail] = useState({...base});
+  const [dealerDetail, setDealerDetail] = useState({ ...base });
 
   //// Change Name
   const changeDealerName = (e) =>
@@ -68,8 +68,7 @@ export const DealerDetailProvider = ({ children }) => {
     setDealerDetail((data) => ({ ...data, admin: e }));
 
   //// Set To Null
-  const changeSetToNull = () => setDealerDetail({ ...base });
-
+  const changeSetToNull = () => setDealerDetail(() => ({ ...base }));
 
   return (
     <DealerDetailContext.Provider

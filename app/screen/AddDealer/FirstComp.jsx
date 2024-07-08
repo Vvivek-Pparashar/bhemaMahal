@@ -34,7 +34,7 @@ const FirstComp = () => {
         style={styles.input}
         placeholder="Enter Dealer Name"
         value={dealerDetail.name}
-        onChangeText={(text) => changeDealerName(text)}
+        onChangeText={(text) => changeDealerName(text.toUpperCase())}
       />
 
       <Text style={styles.label}>Dealer Email</Text>
@@ -42,7 +42,7 @@ const FirstComp = () => {
         style={styles.input}
         placeholder="Enter Dealer Email"
         value={dealerDetail.email}
-        onChangeText={(text) => changeDealerEmail(text)}
+        onChangeText={(text) => changeDealerEmail(text.toLowerCase())}
       />
 
       <Text style={styles.label}>Mobile No.</Text>
@@ -59,7 +59,7 @@ const FirstComp = () => {
       <TextInput
         style={styles.input}
         placeholder={"DD-MM-YYYY"}
-        onFocus={() => setOpen(true)}
+        onTouchStart={()=>setOpen(true)}
         value={
           dealerDetail.DOB
             ? dealerDetail.DOB.toLocaleString().split(",")[0]
@@ -92,7 +92,7 @@ const FirstComp = () => {
         style={styles.input}
         placeholder="Enter User Name"
         value={dealerDetail.username}
-        onChangeText={(text) => changeDealerUserName(text)}
+        onChangeText={(text) => changeDealerUserName(text.toUpperCase())}
       />
 
       <Text style={styles.label}>Password</Text>
@@ -101,7 +101,7 @@ const FirstComp = () => {
         placeholder="Enter Password"
         maxLength={10}
         value={dealerDetail.password}
-        onChangeText={(text) => changeDealerPassword(text)}
+        onChangeText={(text) => changeDealerPassword(text.toUpperCase())}
       />
     </View>
   );
