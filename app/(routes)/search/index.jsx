@@ -1,5 +1,5 @@
 import { PixelRatio, ScrollView, StyleSheet } from "react-native";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SearchLinearGradient from "../../../component/SearchLinearGradient";
 import {
   widthPercentageToDP as wp,
@@ -7,6 +7,7 @@ import {
 } from "react-native-responsive-screen";
 import { AllVehicleContext } from "../../../context/allVehicle";
 import axios from "axios";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const dp = (size) => {
   return size / PixelRatio.get();
@@ -14,27 +15,35 @@ const dp = (size) => {
 
 const index = () => {
   const { allVehicle, changeAllVehicle } = useContext(AllVehicleContext);
+  const [loading, setLoading] = useState(false);
 
-  
   useEffect(() => {
-      const functio = async () => {
-        try {
-          const response = await axios.get(
-            "https://bima-mahalserver.vercel.app/all-vehicles"
-          );
+    setLoading(true);
+    const functio = async () => {
+      try {
+        const response = await axios.get(
+          "https://bima-mahalserver.vercel.app/all-vehicles"
+        );
 
-          console.log("fdfsdf");
-          changeAllVehicle(response.data);
-          console.log("allData", allVehicle);
-        } catch (error) {
-          console.log("error fetching posts", error);
-        }
-      };
+        console.log("fdfsdf");
+        changeAllVehicle(response.data);
+        console.log("allData", allVehicle);
+        setLoading(false);
+      } catch (error) {
+        console.log("error fetching posts", error);
+        setLoading(false);
+      }
+    };
 
-      functio();
+    functio();
   }, []);
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <Spinner
+        visible={loading}
+        textContent={"Loading..."}
+        textStyle={styles.spinnerTextStyle}
+      />
       <SearchLinearGradient
         text_prop={"Search By Vehicle No."}
         icon_prop={"manage-search"}
@@ -73,7 +82,9 @@ const styles = StyleSheet.create({
     gap: wp("5%"),
     backgroundColor: "white",
     minHeight: "100%",
-    // flex:1,
     paddingTop: dp(70),
+  },
+  spinnerTextStyle: {
+    color: "#FFF",
   },
 });

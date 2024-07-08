@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
 import { DealerDetailContext } from "../../../context/dealerDetail";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const SecondComp = () => {
   const {
@@ -19,6 +20,7 @@ const SecondComp = () => {
   const [stateData, setStateData] = useState([]);
   const [cityData, setCityData] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     var config = {
@@ -28,6 +30,8 @@ const SecondComp = () => {
         "X-CSCAPI-KEY": API_KEY,
       },
     };
+
+    setLoading(true);
 
     axios(config)
       .then(function (response) {
@@ -40,10 +44,12 @@ const SecondComp = () => {
           });
         }
         setStateData(stateArray);
-        if (dealerDetail.cityValue) handleCity(dealerDetail.stateValue);
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
+        setLoading(false);
+        Alert.alert("Error", "NetWork Problem");
       });
   }, []);
 
@@ -56,6 +62,8 @@ const SecondComp = () => {
       },
     };
 
+    setLoading(true);
+
     axios(config)
       .then(function (response) {
         var count = Object.keys(response.data).length;
@@ -67,14 +75,22 @@ const SecondComp = () => {
           });
         }
         setCityData(cityArray);
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
+        setLoading(false);
+        Alert.alert("Error", "NetWork Problem");
       });
   };
 
   return (
     <View>
+      <Spinner
+        visible={loading}
+        textContent={"Loading..."}
+        textStyle={styles.spinnerTextStyle}
+      />
       <Text style={styles.label}>State</Text>
       <Dropdown
         style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
@@ -166,5 +182,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginBottom: 20,
+  },
+
+  spinnerTextStyle: {
+    color: "#FFF",
   },
 });

@@ -64,7 +64,7 @@ const index = () => {
               marginTop: 10,
               marginBottom: 30,
             }}
-          >
+          > 
             Dealer Details
           </Text>
           <View style={styles.container}>

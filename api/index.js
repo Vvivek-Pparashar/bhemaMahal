@@ -68,29 +68,28 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  console.log("first");
   try {
     const { username, password } = req.body;
 
     const user = await User.findOne({ username });
     if (!user) {
-      console.log(user);
-      return res.status(404).json({ message: "Invalid username" });
+      return res.status(404).send({ err: "Invalid UserName" });
     }
 
     if (user.password !== password) {
-      return res.status(404).json({ message: "Invalid password" });
+      return res.status(404).send({ message: "Invalid password" });
     }
 
     console.log(user);
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Login failed" });
+    res.status(500).send({ message: "Check Internet Connection" });
   }
 });
 
 app.get("/get-Dealers", async (req, res) => {
+  // console.log("hellooooo")
   try {
     const users = await User.find().sort({ createdAt: -1 });
 

@@ -2,11 +2,14 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Table, Row, Rows } from "react-native-table-component";
 import axios from "axios";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const index = () => {
   const [allDealers, setAllDealers] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const functio = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           "https://bima-mahalserver.vercel.app/get-Dealers"
@@ -30,8 +33,10 @@ const index = () => {
           ]);
         }
         setAllDealers(data);
+        setLoading(false);
       } catch (error) {
         console.log("error fetching posts", error);
+        setLoading(false);
       }
     };
 
@@ -53,6 +58,11 @@ const index = () => {
   };
   return (
     <View style={styles.container}>
+      <Spinner
+        visible={loading}
+        textContent={"Loading..."}
+        textStyle={styles.spinnerTextStyle}
+      />
       <ScrollView horizontal={true}>
         <View>
           <ScrollView>
@@ -66,7 +76,7 @@ const index = () => {
               <Rows
                 data={allDealers}
                 widthArr={state.widthArr}
-                textStyle={styles.text}
+                textStyle={{...styles.text}}
               />
             </Table>
           </ScrollView>
@@ -82,4 +92,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: "#fff" },
   head: { height: 40, backgroundColor: "#f1f8ff" },
   text: { margin: 6 },
+  spinnerTextStyle: {
+    color: "#FFF",
+  },
 });

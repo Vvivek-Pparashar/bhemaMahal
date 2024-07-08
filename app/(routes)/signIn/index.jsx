@@ -17,12 +17,14 @@ import { router } from "expo-router";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UserDataContext } from "../../../context/userContext";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const index = () => {
   const { userData, changeUserData } = useContext(UserDataContext);
 
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -42,27 +44,32 @@ const index = () => {
   }, []);
 
   const handleLogin = () => {
+    setLoading(true);
     const user = {
       username: username,
       password: password,
     };
 
     axios
-      .post("https://bima-mahalserver.vercel.app/login", user)
+      .post("http://192.168.29.251:3000/login", user)
       .then((response) => {
-        console.log(response.data);
+        setLoading(false);
         AsyncStorage.setItem("userData", JSON.stringify(response.data));
-        console.log("done");
         changeUserData(response.data);
         router.replace("/(tabs)/home");
       })
       .catch((error) => {
-        Alert.alert("Login error");
-        console.log("error ", error);
+        setLoading(false);
+        Alert.alert(`Error`, error.response.data.err);
       });
   };
   return (
     <ScrollView style={{ minHeight: "100%", backgroundColor: "white" }}>
+      <Spinner
+        visible={loading}
+        textContent={"Loading..."}
+        textStyle={styles.spinnerTextStyle}
+      />
       <SafeAreaView
         style={{ flex: 1, alignItems: "center", minHeight: "100%" }}
       >
@@ -194,4 +201,8 @@ const index = () => {
 
 export default index;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  spinnerTextStyle: {
+    color: "#FFF",
+  },
+});
