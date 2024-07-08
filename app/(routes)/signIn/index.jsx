@@ -51,7 +51,7 @@ const index = () => {
     };
 
     axios
-      .post("http://192.168.29.251:3000/login", user)
+      .post("https://bima-mahalserver.vercel.app/login", user)
       .then((response) => {
         setLoading(false);
         AsyncStorage.setItem("userData", JSON.stringify(response.data));
