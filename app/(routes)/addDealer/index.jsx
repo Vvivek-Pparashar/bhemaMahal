@@ -16,9 +16,12 @@ import SecondComp from "../../screen/AddDealer/SecondComp";
 import { DealerDetailContext } from "../../../context/dealerDetail";
 import Spinner from "react-native-loading-spinner-overlay";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 const index = () => {
   const { dealerDetail, changeSetToNull } = useContext(DealerDetailContext);
   const [loading, setLoading] = useState(false);
+
+  const navigation = useNavigation();
 
   const onPressAddDealer = () => {
     if (
@@ -102,7 +105,8 @@ const index = () => {
                 }}
                 onPress={() => {
                   changeSetToNull();
-                  router.replace("home");
+                  // router.replace("home");
+                  navigation.goBack();
                 }}
               >
                 <Text

@@ -1,12 +1,21 @@
-import { Button, Image, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from "react-native";
 import React, { useContext } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 const staticImage = require("../../assets/images/profile.png");
 import { UserDataContext } from "../../context/userContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "expo-router";
-import { CommonActions } from "@react-navigation/native";
+import ProfilePageDetailComp from "../screen/ProfilePageDetailComp";
 import { useRouter } from "expo-router";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const profile = () => {
   const navigation = useNavigation();
@@ -41,24 +50,61 @@ const profile = () => {
         </View>
       </LinearGradient>
 
-      <Button
-        title="Logout"
+      <View style={{ marginBottom: 50, marginTop: 20 }}>
+        <ProfilePageDetailComp
+          name={new Date(userData.DOB).toLocaleString().split(",")[0]}
+          place={"DOB"}
+          icon={"cake"}
+        />
+        <ProfilePageDetailComp
+          name={userData.email}
+          place={"Email"}
+          icon={"email"}
+        />
+
+        <ProfilePageDetailComp
+          name={userData.registeredVehicle.length}
+          place={"Count"}
+          icon={"directions-car"}
+        />
+
+        <ProfilePageDetailComp
+          name={new Date(userData.joindDate).toLocaleString().split(",")[0]}
+          place={"Joining Date"}
+          icon={"add-link"}
+        />
+      </View>
+
+      <TouchableHighlight
+        underlayColor="white"
         onPress={() => {
           AsyncStorage.clear();
           changeUserDataNull();
-          // navigation.dispatch(resetAction);
-          // navigation;
-          // router.replace("signIn"/);
-          // router.dismissAll();
-
-          // navigation.dispatch(resetAction);
-          // navigation.reset();
-          // router.replace("signIn")
-          // navigation.navigate("signIn");
-
           router.replace("/signIn");
+          // navigation.reset();
         }}
-      />
+      >
+        <View
+          style={{
+            backgroundColor: "#f72828",
+            padding: 13,
+            borderRadius: 10,
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 17, fontWeight: 500 }}>
+            Logout
+          </Text>
+          <MaterialIcons
+            name="logout"
+            style={{ fontSize: 19, color: "white" }}
+          />
+        </View>
+      </TouchableHighlight>
     </View>
   );
 };

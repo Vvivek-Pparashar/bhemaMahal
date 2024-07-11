@@ -14,8 +14,10 @@ import { router } from "expo-router";
 import { VehicleDataContext } from "../../../context/newVehicle";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { UserDataContext } from "../../../context/userContext";
+import { useNavigation } from "@react-navigation/native";
 
 const index = () => {
+  const navigation = useNavigation();
   const {
     vehicleData,
     changeType,
@@ -134,7 +136,7 @@ const index = () => {
                 }}
                 onPress={() => {
                   changeSetToNull();
-                  router.replace("(tabs)/home");
+                  navigation.goBack();
                 }}
               >
                 <Text

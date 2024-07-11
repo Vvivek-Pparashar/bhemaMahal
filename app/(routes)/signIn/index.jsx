@@ -18,9 +18,12 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UserDataContext } from "../../../context/userContext";
 import Spinner from "react-native-loading-spinner-overlay";
+import { useNavigation } from "@react-navigation/native";
 
 const index = () => {
   const { userData, changeUserData } = useContext(UserDataContext);
+
+  const navigation = useNavigation();
 
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,6 +36,7 @@ const index = () => {
         if (token) {
           setTimeout(() => {
             changeUserData(JSON.parse(token));
+            navigation.reset();
             router.replace("/(tabs)/home");
           }, 400);
         }
