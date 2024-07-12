@@ -25,9 +25,9 @@ const index = () => {
           "https://bima-mahalserver.vercel.app/all-vehicles"
         );
 
-        console.log("fdfsdf");
+        // console.log("fdfsdf");
         changeAllVehicle(response.data);
-        console.log("allData", allVehicle);
+        // console.log("allData", allVehicle);
         setLoading(false);
       } catch (error) {
         console.log("error fetching posts", error);

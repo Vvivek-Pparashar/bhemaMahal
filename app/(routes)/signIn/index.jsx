@@ -36,7 +36,7 @@ const index = () => {
         if (token) {
           setTimeout(() => {
             changeUserData(JSON.parse(token));
-            navigation.reset();
+            // navigation.reset();
             router.replace("/(tabs)/home");
           }, 400);
         }

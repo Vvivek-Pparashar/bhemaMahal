@@ -1,50 +1,14 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Table, Row, Rows } from "react-native-table-component";
 import { AllVehicleContext } from "../../../context/allVehicle";
+import { exportDataToExcel } from "../../../component/exportDataToExcel";
+import { arraysToObject} from "../../../component/arrayToObejct"
 
 const index = () => {
   const { allVehicle } = useContext(AllVehicleContext);
   const [data, setData] = useState([]);
-
-  useEffect(() => {
-    console.log(allVehicle)
-    let count = allVehicle.length;
-
-    const temp = [];
-
-    for (let i = 0; i < count; i++) {
-      let row = allVehicle[i];
-
-      temp.push([
-        i + 1,
-        new Date(row.createdAt).toLocaleString().split(",")[0],
-        row.createdBy.name,
-        row.type,
-        row.modal,
-        row.company,
-        row.variant,
-        row.MYear,
-        row.hasPVNo ? row.PVNo : "Temporary",
-        row.engineNo,
-        row.chassisNo,
-        row.ic,
-        new Date(row.ied).toLocaleString().split(",")[0],
-        new Date(row.serviceDate).toLocaleString().split(",")[0],
-        row.kmDriven,
-        row.ownerName,
-        row.mobileNo,
-        new Date(row.DOB).toLocaleString().split(",")[0],
-        row.aadharNo,
-        row.hasPAN ? row.PAN : "NO",
-        row.state,
-        row.city,
-        row.pincode,
-      ]);
-    }
-
-    setData(temp);
-  }, []);
+  const [exportData, setExportData] = useState([]);
 
   const state = {
     tableHead: [
@@ -77,6 +41,50 @@ const index = () => {
       200, 200, 200, 200, 200, 200, 200, 200,
     ],
   };
+
+  useEffect(() => {
+    console.log(allVehicle);
+    let count = allVehicle.length;
+
+    const temp = [];
+    const ed = [];
+
+    for (let i = 0; i < count; i++) {
+      let row = allVehicle[i];
+
+      temp.push([
+        i + 1,
+        new Date(row.createdAt).toLocaleString().split(",")[0],
+        row.createdBy.name,
+        row.type,
+        row.modal,
+        row.company,
+        row.variant,
+        row.MYear,
+        row.hasPVNo ? row.PVNo : "Temporary",
+        row.engineNo,
+        row.chassisNo,
+        row.ic,
+        new Date(row.ied).toLocaleString().split(",")[0],
+        new Date(row.serviceDate).toLocaleString().split(",")[0],
+        row.kmDriven,
+        row.ownerName,
+        row.mobileNo,
+        new Date(row.DOB).toLocaleString().split(",")[0],
+        row.aadharNo,
+        row.hasPAN ? row.PAN : "NO",
+        row.state,
+        row.city,
+        row.pincode,
+      ]);
+    }
+
+    setData(temp);
+    setExportData(arraysToObject(state.tableHead, temp));
+  }, []);
+
+  console.log(exportData)
+
   return (
     <View style={styles.container}>
       <Text
@@ -88,7 +96,8 @@ const index = () => {
       >
         All Vehicles :-
       </Text>
-      <ScrollView horizontal={true}>
+      <Button title="Export to Excel" onPress={() => exportDataToExcel(exportData)} />
+      <ScrollView horizontal={true} style={{ marginTop: 20 }}>
         <View>
           <ScrollView>
             <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
@@ -101,7 +110,7 @@ const index = () => {
               <Rows
                 data={data}
                 widthArr={state.widthArr}
-                textStyle={{margin:6}}
+                textStyle={{ margin: 6 }}
               />
             </Table>
           </ScrollView>

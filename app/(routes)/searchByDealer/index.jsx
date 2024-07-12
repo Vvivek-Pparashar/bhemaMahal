@@ -1,16 +1,57 @@
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { Table, Row, Rows } from "react-native-table-component";
 import { AllVehicleContext } from "../../../context/allVehicle";
 import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
+import { exportDataToExcel } from "../../../component/exportDataToExcel";
+import { arraysToObject } from "../../../component/arrayToObejct";
 
 const index = () => {
   const { allVehicle } = useContext(AllVehicleContext);
   const [data, setData] = useState([]);
   const [value, setValue] = useState([]);
   const [allDealers, setAllDealers] = useState([]);
+  const [exportData, setExportData] = useState([]);
 
+  const state = {
+    tableHead: [
+      "Sr No.",
+      "Date Of Regestration",
+      "Dealer",
+      "Type",
+      "Modal",
+      "Company",
+      "Variant",
+      "Manufacture. Year",
+      "Vehicle No.",
+      "Engine No.",
+      "Chassis No.",
+      "Insurance Company",
+      "Insurance Expiry",
+      "Service Date",
+      "KM Driven",
+      "Owner Name",
+      "Mobile No",
+      "DOB",
+      "Aadhar No",
+      "PanCard No",
+      "State",
+      "City",
+      "Pincode",
+    ],
+    widthArr: [
+      70, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+      200, 200, 200, 200, 200, 200, 200, 200,
+    ],
+  };
 
   useEffect(() => {
     const functio = async () => {
@@ -72,39 +113,9 @@ const index = () => {
     }
 
     setData(temp);
+    setExportData(arraysToObject(state.tableHead, temp));
   }, [value]);
 
-  const state = {
-    tableHead: [
-      "Sr No.",
-      "Date Of Regestration",
-      "Dealer",
-      "Type",
-      "Modal",
-      "Company",
-      "Variant",
-      "Manufacture. Year",
-      "Vehicle No.",
-      "Engine No.",
-      "Chassis No.",
-      "Insurance Company",
-      "Insurance Expiry",
-      "Service Date",
-      "KM Driven",
-      "Owner Name",
-      "Mobile No",
-      "DOB",
-      "Aadhar No",
-      "PanCard No",
-      "State",
-      "City",
-      "Pincode",
-    ],
-    widthArr: [
-      70, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
-      200, 200, 200, 200, 200, 200, 200, 200,
-    ],
-  };
   return (
     <View style={styles.container}>
       <Text
@@ -133,12 +144,21 @@ const index = () => {
         onChange={(item) => setValue(item.value)}
       />
 
+      {exportData.length != 0 ? (
+        <Button
+          title="Export to Excel"
+          onPress={() => exportDataToExcel(exportData)}
+        />
+      ) : (
+        ""
+      )}
+
       {data.length == 0 ? (
         <Text style={{ fontSize: 20, fontWeight: "bold" }}>
           Nothing Found!!!
         </Text>
       ) : (
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} style={{ marginTop: 20 }}>
           <View>
             <ScrollView>
               <Table borderStyle={{ borderWidth: 2, borderColor: "#c8e1ff" }}>
