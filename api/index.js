@@ -164,7 +164,14 @@ app.post("/add-vehicle", async (req, res) => {
     });
 
     //save the  user to the database
-    await newVehicle.save();
+    let id = "";
+    await newVehicle.save().then(vehicle => id = vehicle._id);
+
+    await User.findByIdAndUpdate(createdBy, {
+      $push: { registeredVehicle: id },
+    });
+
+    console.log("id", id);
 
     res.status(200).json({ message: "Registration successful" });
   } catch (error) {
