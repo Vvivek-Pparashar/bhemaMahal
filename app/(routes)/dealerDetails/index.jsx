@@ -63,6 +63,15 @@ const index = () => {
         textContent={"Loading..."}
         textStyle={styles.spinnerTextStyle}
       />
+      <Text
+        style={{
+          fontSize: 20,
+          marginBottom: 20,
+          fontWeight: "condensedBold",
+        }}
+      >
+        All Dealers :-
+      </Text>
       <ScrollView horizontal={true}>
         <View>
           <ScrollView>
@@ -76,7 +85,7 @@ const index = () => {
               <Rows
                 data={allDealers}
                 widthArr={state.widthArr}
-                textStyle={{...styles.text}}
+                textStyle={{ ...styles.text }}
               />
             </Table>
           </ScrollView>
